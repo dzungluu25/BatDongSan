@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BatDongSan | Bất động sản cao cấp Việt Nam</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Lightbox -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
+
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --primary-dark: #0b3760;
+      --secondary: #d7a85c;
+      --bg-soft: #f6f8fb;
+      --bg-ivory: #fbfaf7;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --white: #ffffff;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 16px 40px rgba(15, 76, 129, 0.08);
+      --shadow-lg: 0 24px 60px rgba(3, 17, 32, 0.16);
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-2xl: 32px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--text-main);
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .navbar-brand,
+    .btn,
+    .section-title {
+      font-family: "Manrope", sans-serif;
+    }
+
+    .section-space {
+      padding: 96px 0;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-weight: 800;
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #0f172a;
+      margin-bottom: 0;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 760px;
+      margin-top: 16px;
+    }
+
+    /* Topbar */
+    .topbar {
+      background: #0a1b30;
+      color: rgba(255, 255, 255, .78);
+      font-size: 13px;
+    }
+
+    .topbar a {
+      color: rgba(255, 255, 255, .85);
+      text-decoration: none;
+    }
+
+    .topbar a:hover {
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar-custom {
+      background: rgba(255, 255, 255, .85);
+      backdrop-filter: blur(16px);
+      transition: all .3s ease;
+      border-bottom: 1px solid rgba(0, 0, 0, .04);
+    }
+
+    .navbar-scrolled {
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .08);
+      background: rgba(255, 255, 255, .96);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.7rem;
+      letter-spacing: -0.04em;
+      color: var(--primary);
+    }
+
+    .nav-link-custom {
+      color: #475569;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: .2s ease;
+      position: relative;
+    }
+
+    .nav-link-custom:hover,
+    .nav-link-custom.active {
+      color: var(--primary);
+    }
+
+    .nav-link-custom.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: var(--secondary);
+    }
+
+    .btn-primary-custom {
+      background: var(--primary);
+      border: 1px solid var(--primary);
+      color: #fff;
+      border-radius: 12px;
+      padding: .85rem 1.3rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .btn-primary-custom:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      color: #fff;
+    }
+
+    .btn-outline-custom {
+      border: 1px solid rgba(255, 255, 255, .22);
+      color: #fff;
+      border-radius: 12px;
+      padding: .85rem 1.3rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .btn-outline-custom:hover {
+      background: rgba(255, 255, 255, .16);
+      color: #fff;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(8, 19, 35, .88) 0%, rgba(8, 19, 35, .64) 42%, rgba(8, 19, 35, .18) 100%),
+        url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      color: #fff;
+    }
+
+    #particles-js {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: .42;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      padding-top: 120px;
+      padding-bottom: 100px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .65rem 1rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .16);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 6vw, 5.7rem);
+      line-height: .95;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-desc {
+      max-width: 640px;
+      color: rgba(255, 255, 255, .85);
+      line-height: 1.9;
+      font-size: 1.06rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .hero-stat {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 18px;
+      backdrop-filter: blur(14px);
+      padding: 1rem 1.2rem;
+      min-width: 155px;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .hero-stat span {
+      color: rgba(255, 255, 255, .72);
+      font-size: .88rem;
+    }
+
+    /* Search panel */
+    .search-panel-wrapper {
+      position: relative;
+      z-index: 5;
+      margin-top: -58px;
+    }
+
+    .search-panel {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 30px 80px rgba(2, 24, 43, 0.15);
+      padding: 1rem;
+    }
+
+    .search-tabs .nav-link {
+      border: none;
+      border-radius: 999px;
+      padding: .75rem 1.1rem;
+      font-weight: 800;
+      color: #64748b;
+    }
+
+    .search-tabs .nav-link.active {
+      background: #eef6fd;
+      color: var(--primary);
+    }
+
+    .form-control,
+    .form-select {
+      min-height: 54px;
+      border-radius: 14px;
+      border-color: var(--border-soft);
+      box-shadow: none !important;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: #8ab6d6;
+    }
+
+    /* trust cards */
+    .trust-card {
+      background: #fff;
+      border: 1px solid #eef2f7;
+      border-radius: 22px;
+      padding: 1.6rem;
+      height: 100%;
+      box-shadow: var(--shadow-soft);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .trust-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 45px rgba(15, 76, 129, 0.12);
+    }
+
+    .trust-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #edf5fc;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    /* property swiper */
+    .property-section {
+      background: var(--bg-ivory);
+    }
+
+    .property-card {
+      background: #fff;
+      border: 1px solid #eff2f5;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: transform .25s ease, box-shadow .25s ease;
+      height: 100%;
+    }
+
+    .property-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 50px rgba(15, 76, 129, 0.12);
+    }
+
+    .property-media {
+      position: relative;
+      height: 320px;
+      overflow: hidden;
+    }
+
+    .property-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+    }
+
+    .property-card:hover .property-media img {
+      transform: scale(1.06);
+    }
+
+    .property-badge {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      background: rgba(15, 76, 129, .92);
+      color: #fff;
+      border-radius: 999px;
+      padding: .5rem .8rem;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .property-actions {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: .5rem;
+    }
+
+    .property-actions a {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .92);
+      color: #0f172a;
+      text-decoration: none;
+      transition: .2s ease;
+    }
+
+    .property-actions a:hover {
+      background: #fff;
+      transform: scale(1.05);
+    }
+
+    .property-body {
+      padding: 1.4rem;
+    }
+
+    .property-title {
+      font-family: "Manrope", sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: .25rem;
+    }
+
+    .property-location {
+      color: var(--text-muted);
+      margin-bottom: .85rem;
+    }
+
+    .property-price {
+      color: var(--primary);
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      font-family: "Manrope", sans-serif;
+    }
+
+    .property-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eef2f7;
+      color: #475569;
+      font-size: .92rem;
+      font-weight: 600;
+    }
+
+    /* area cards */
+    .area-section {
+      background: #fff;
+    }
+
+    .area-card {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .area-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+    }
+
+    .area-card:hover img {
+      transform: scale(1.07);
+    }
+
+    .area-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11, 31, 58, .9), rgba(11, 31, 58, .24), transparent);
+    }
+
+    .area-content {
+      position: absolute;
+      left: 28px;
+      bottom: 28px;
+      right: 28px;
+      z-index: 2;
+      color: #fff;
+    }
+
+    .area-content h3 {
+      font-family: "Manrope", sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+    }
+
+    .area-mini {
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: rgba(255, 255, 255, .78);
+      margin-bottom: .6rem;
+      font-weight: 700;
+    }
+
+    /* experts */
+    .experts-section {
+      background: var(--bg-soft);
+    }
+
+    .agent-card {
+      background: #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #eef2f7;
+      height: 100%;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .agent-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 45px rgba(15, 76, 129, 0.12);
+    }
+
+    .agent-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .agent-body {
+      padding: 1.35rem;
+    }
+
+    .agent-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: .2rem;
+      color: #0f172a;
+    }
+
+    .agent-role {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: .75rem;
+      font-size: .95rem;
+    }
+
+    .agent-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-bottom: .9rem;
+    }
+
+    .agent-tags span {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      font-size: .76rem;
+      font-weight: 700;
+      padding: .4rem .65rem;
+      border-radius: 999px;
+    }
+
+    .agent-desc {
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: .94rem;
+    }
+
+    /* testimonial */
+    .testimonial-section {
+      background: #0f172a;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-section::before {
+      content: "";
+      position: absolute;
+      inset: auto -120px -120px auto;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .testimonial-card {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .quote-icon {
+      font-size: 4rem;
+      color: rgba(255, 255, 255, .18);
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-text {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      line-height: 1.65;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      font-weight: 800;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.15rem;
+    }
+
+    .testimonial-role {
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .75rem;
+      color: #b7c6db;
+      margin-top: .35rem;
+    }
+
+    /* journal */
+    .journal-card {
+      background: #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #eef2f7;
+      height: 100%;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .journal-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 45px rgba(15, 76, 129, 0.12);
+    }
+
+    .journal-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .journal-body {
+      padding: 1.4rem;
+    }
+
+    .journal-cat {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-weight: 800;
+      color: var(--secondary);
+      margin-bottom: .8rem;
+      display: inline-block;
+    }
+
+    .journal-title {
+      font-family: "Manrope", sans-serif;
+      font-size: 1.35rem;
+      line-height: 1.45;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: .8rem;
+    }
+
+    .journal-body p {
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 0;
+    }
+
+    /* CTA */
+    .cta-section {
+      position: relative;
+      background:
+        linear-gradient(110deg, rgba(11, 55, 96, .95) 0%, rgba(15, 76, 129, .92) 50%, rgba(15, 76, 129, .84) 100%),
+        url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .cta-section .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-title {
+      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      line-height: .95;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      font-family: "Manrope", sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .cta-text {
+      max-width: 760px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, .84);
+      line-height: 1.9;
+      font-size: 1.08rem;
+    }
+
+    /* footer */
+    .footer {
+      background: #0b1220;
+      color: #cbd5e1;
+    }
+
+    .footer-brand {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #fff;
+      font-family: "Manrope", sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .footer-title {
+      color: #fff;
+      font-size: .82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      margin-bottom: 1rem;
+    }
+
+    .footer a {
+      color: #94a3b8;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    /* swiper */
+    .swiper {
+      padding-bottom: 10px;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--primary);
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: var(--primary);
+      width: 46px;
+      height: 46px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    @media (max-width: 991.98px) {
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-content {
+        padding-top: 150px;
+        padding-bottom: 90px;
+      }
+
+      .area-card {
+        min-height: 400px;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .section-space {
+        padding: 72px 0;
+      }
+
+      .hero-content {
+        padding-top: 135px;
+        padding-bottom: 70px;
+      }
+
+      .search-panel {
+        border-radius: 18px;
+      }
+
+      .hero-stats {
+        gap: .75rem;
+      }
+
+      .hero-stat {
+        min-width: calc(50% - .5rem);
+      }
+
+      .property-media {
+        height: 260px;
+      }
+
+      .agent-card img {
+        height: 280px;
+      }
+
+      .journal-card img {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar py-2 d-none d-md-block">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-4">
+          <span><i class="fa-solid fa-phone me-2"></i>0909 123 456</span>
+          <span><i class="fa-solid fa-envelope me-2"></i>contact@digitalcurator.vn</span>
+        </div>
+        <div class="d-flex gap-4">
+          <a href="#"><i class="fa-brands fa-facebook-f me-2"></i>Facebook</a>
+          <a href="#"><i class="fa-brands fa-instagram me-2"></i>Instagram</a>
+          <a href="#"><i class="fa-brands fa-linkedin-in me-2"></i>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-custom" id="mainNavbar">
+    <div class="container py-2">
+      <a class="navbar-brand text-decoration-none" href="index.html">BatDongSan</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav mx-auto gap-lg-4">
+          <li class="nav-item"><a class="nav-link-custom active" href="index.html">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="properties.html">Mua bán</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="properties.html">Cho thuê</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="projects.html">Dự án</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="agents.html">Môi giới</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="blog.html">Tạp chí</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="contact.html">Liên hệ</a></li>
+          <l1 class="nav-item"><a class="nav-link-custom" href="join-team.html">Gia nhập</a></li>
+        </ul>
+
+        <div class="d-flex gap-2 mt-3 mt-lg-0">
+          <button class="btn btn-light border fw-bold px-3">Đăng nhập</button>
+          <a class="btn btn-primary-custom" href="post-property.html">Đăng tin</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div id="particles-js"></div>
+      <div class="container hero-content">
+        <div class="row">
+          <div class="col-xl-8">
+            <div class="hero-badge animate__animated animate__fadeInDown">
+              <i class="fa-solid fa-gem"></i>
+              Danh mục độc quyền
+            </div>
+
+            <h1 class="hero-title" id="heroTitle">
+              Tìm kiếm kiệt tác <br>bất động sản của bạn
+            </h1>
+
+            <p class="hero-desc" id="heroDesc">
+              Tuyển chọn những không gian sống đặc sắc nhất tại Việt Nam. Nơi giá trị kiến trúc, vị trí đắt giá và phong
+              cách sống tinh tế hội tụ trong một trải nghiệm bất động sản cao cấp.
+            </p>
+
+            <div class="d-flex flex-wrap gap-3" id="heroButtons">
+              <a href="#" class="btn btn-primary-custom">
+                <i class="fa-solid fa-building me-2"></i>Khám phá bất động sản
+              </a>
+              <a href="#" class="btn btn-outline-custom">
+                <i class="fa-solid fa-user-tie me-2"></i>Tìm môi giới
+              </a>
+            </div>
+
+            <div class="hero-stats" id="heroStats">
+              <div class="hero-stat">
+                <strong class="counter" data-target="1200">0</strong>
+                <span>Tài sản giao dịch</span>
+              </div>
+              <div class="hero-stat">
+                <strong class="counter" data-target="500">0</strong>
+                <span>Biệt thự & penthouse</span>
+              </div>
+              <div class="hero-stat">
+                <strong class="counter" data-target="15">0</strong>
+                <span>Năm kinh nghiệm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search -->
+    <section class="search-panel-wrapper">
+      <div class="container">
+        <div class="search-panel" data-aos="fade-up" data-aos-duration="900">
+          <ul class="nav search-tabs mb-3">
+            <li class="nav-item"><button class="nav-link active" type="button">Mua bán</button></li>
+            <li class="nav-item"><button class="nav-link" type="button">Cho thuê</button></li>
+            <li class="nav-item"><button class="nav-link" type="button">Dự án</button></li>
+            <li class="nav-item"><button class="nav-link" type="button">Môi giới</button></li>
+          </ul>
+
+          <div class="row g-3 align-items-end">
+            <div class="col-lg-4">
+              <label class="form-label fw-semibold">Khu vực</label>
+              <input type="text" class="form-control" id="homeSearchInput" placeholder="TP.HCM, Hà Nội, Đà Nẵng...">
+            </div>
+            <div class="col-md-6 col-lg-2">
+              <label class="form-label fw-semibold">Loại hình</label>
+              <select class="form-select" id="homeSearchType">
+                <option>Biệt thự</option>
+                <option>Penthouse</option>
+                <option>Nhà phố</option>
+                <option>Căn hộ cao cấp</option>
+              </select>
+            </div>
+            <div class="col-md-6 col-lg-2">
+              <label class="form-label fw-semibold">Mức giá</label>
+              <select class="form-select">
+                <option>Từ 10 tỷ</option>
+                <option>Từ 20 tỷ</option>
+                <option>Từ 50 tỷ</option>
+                <option>Trên 100 tỷ</option>
+              </select>
+            </div>
+            <div class="col-md-6 col-lg-2">
+              <label class="form-label fw-semibold">Số phòng ngủ</label>
+              <select class="form-select">
+                <option>3+</option>
+                <option>4+</option>
+                <option>5+</option>
+                <option>6+</option>
+              </select>
+            </div>
+            <div class="col-md-6 col-lg-2">
+              <button class="btn btn-primary-custom w-100 h-100" id="homeSearchBtn">
+                <i class="fa-solid fa-magnifying-glass me-2"></i>Tìm kiếm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust -->
+    <section class="section-space">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="trust-card">
+              <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <h5 class="fw-bold mb-2">Pháp lý minh bạch</h5>
+              <p class="text-secondary mb-0">Mỗi tài sản được chọn lọc theo tiêu chí pháp lý rõ ràng, vị trí chất lượng
+                và tiềm năng tăng giá dài hạn.</p>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="trust-card">
+              <div class="trust-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <h5 class="fw-bold mb-2">Chuyên sâu theo khu vực</h5>
+              <p class="text-secondary mb-0">Tập trung vào các thị trường trọng điểm như Thảo Điền, Phú Mỹ Hưng, Tây Hồ
+                Tây, Đà Nẵng và Phú Quốc.</p>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="trust-card">
+              <div class="trust-icon"><i class="fa-solid fa-user-tie"></i></div>
+              <h5 class="fw-bold mb-2">Đội ngũ môi giới chọn lọc</h5>
+              <p class="text-secondary mb-0">Kết nối với các chuyên viên tư vấn theo từng phân khúc: ở thật, đầu tư,
+                nghỉ dưỡng và tài sản dòng tiền.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured properties -->
+    <section class="section-space property-section">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-5">
+          <div>
+            <span class="section-kicker">Bộ sưu tập</span>
+            <h2 class="section-title">Những kiệt tác tiêu biểu</h2>
+            <p class="section-desc">Danh mục nổi bật được thiết kế theo trải nghiệm của website bất động sản Việt Nam:
+              rõ hình ảnh, rõ giá, rõ khu vực, rõ người tư vấn.</p>
+          </div>
+          <a href="#" class="btn btn-outline-dark rounded-pill px-4">Xem tất cả</a>
+        </div>
+
+        <div class="swiper propertySwiper" data-aos="fade-up">
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+              <div class="property-card">
+                <div class="property-media">
+                  <a href="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1400&auto=format&fit=crop"
+                    data-lightbox="featured-home" data-title="The Riverfront Villa - Thảo Điền">
+                    <img
+                      src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1400&auto=format&fit=crop"
+                      alt="The Riverfront Villa">
+                  </a>
+                  <div class="property-badge">Nổi bật</div>
+                  <div class="property-actions">
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                  </div>
+                </div>
+                <div class="property-body">
+                  <h3 class="property-title">The Riverfront Villa</h3>
+                  <div class="property-location"><i class="fa-solid fa-location-dot me-2"></i>Thảo Điền, TP. Thủ Đức
+                  </div>
+                  <div class="property-price">68 tỷ VNĐ</div>
+                  <div class="property-meta">
+                    <span><i class="fa-solid fa-bed me-1"></i>5 PN</span>
+                    <span><i class="fa-solid fa-bath me-1"></i>6 WC</span>
+                    <span><i class="fa-solid fa-ruler-combined me-1"></i>520 m²</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+              <div class="property-card">
+                <div class="property-media">
+                  <a href="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1400&auto=format&fit=crop"
+                    data-lightbox="featured-home" data-title="Sky Penthouse West Lake - Hà Nội">
+                    <img
+                      src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1400&auto=format&fit=crop"
+                      alt="Sky Penthouse West Lake">
+                  </a>
+                  <div class="property-badge">Penthouse</div>
+                  <div class="property-actions">
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                  </div>
+                </div>
+                <div class="property-body">
+                  <h3 class="property-title">Sky Penthouse West Lake</h3>
+                  <div class="property-location"><i class="fa-solid fa-location-dot me-2"></i>Tây Hồ, Hà Nội</div>
+                  <div class="property-price">92 tỷ VNĐ</div>
+                  <div class="property-meta">
+                    <span><i class="fa-solid fa-bed me-1"></i>4 PN</span>
+                    <span><i class="fa-solid fa-bath me-1"></i>5 WC</span>
+                    <span><i class="fa-solid fa-ruler-combined me-1"></i>410 m²</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="swiper-slide">
+              <div class="property-card">
+                <div class="property-media">
+                  <a href="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=1400&auto=format&fit=crop"
+                    data-lightbox="featured-home" data-title="Ocean Dune Retreat - Đà Nẵng">
+                    <img
+                      src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=1400&auto=format&fit=crop"
+                      alt="Ocean Dune Retreat">
+                  </a>
+                  <div class="property-badge">Nghỉ dưỡng</div>
+                  <div class="property-actions">
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                  </div>
+                </div>
+                <div class="property-body">
+                  <h3 class="property-title">Ocean Dune Retreat</h3>
+                  <div class="property-location"><i class="fa-solid fa-location-dot me-2"></i>Ngũ Hành Sơn, Đà Nẵng
+                  </div>
+                  <div class="property-price">54 tỷ VNĐ</div>
+                  <div class="property-meta">
+                    <span><i class="fa-solid fa-bed me-1"></i>4 PN</span>
+                    <span><i class="fa-solid fa-bath me-1"></i>4 WC</span>
+                    <span><i class="fa-solid fa-ruler-combined me-1"></i>360 m²</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="swiper-slide">
+              <div class="property-card">
+                <div class="property-media">
+                  <a href="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1400&auto=format&fit=crop"
+                    data-lightbox="featured-home" data-title="Lumiere Riverside Residence">
+                    <img
+                      src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1400&auto=format&fit=crop"
+                      alt="Lumiere Riverside Residence">
+                  </a>
+                  <div class="property-badge">Mới</div>
+                  <div class="property-actions">
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                  </div>
+                </div>
+                <div class="property-body">
+                  <h3 class="property-title">Lumiere Riverside Residence</h3>
+                  <div class="property-location"><i class="fa-solid fa-location-dot me-2"></i>Quận 2, TP.HCM</div>
+                  <div class="property-price">34 tỷ VNĐ</div>
+                  <div class="property-meta">
+                    <span><i class="fa-solid fa-bed me-1"></i>3 PN</span>
+                    <span><i class="fa-solid fa-bath me-1"></i>3 WC</span>
+                    <span><i class="fa-solid fa-ruler-combined me-1"></i>185 m²</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-pagination mt-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured areas -->
+    <section class="section-space area-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-kicker">Khu vực tiêu biểu</span>
+          <h2 class="section-title">Tọa độ vàng tại Việt Nam</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4" data-aos="fade-up">
+            <div class="area-card">
+              <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1400&auto=format&fit=crop"
+                alt="Thảo Điền">
+              <div class="area-overlay"></div>
+              <div class="area-content">
+                <div class="area-mini">TP. Thủ Đức, TP.HCM</div>
+                <h3>Thảo Điền</h3>
+                <p class="mb-3 text-white-50">Biệt thự ven sông, compound, căn hộ cao cấp và cộng đồng quốc tế.</p>
+                <a href="#" class="btn btn-light rounded-pill px-4">Xem khu vực</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="area-card">
+              <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1400&auto=format&fit=crop"
+                alt="Phú Mỹ Hưng">
+              <div class="area-overlay"></div>
+              <div class="area-content">
+                <div class="area-mini">Quận 7, TP.HCM</div>
+                <h3>Phú Mỹ Hưng</h3>
+                <p class="mb-3 text-white-50">Khu đô thị chuẩn mực, tiện ích đồng bộ, phù hợp ở thật và đầu tư dài hạn.
+                </p>
+                <a href="#" class="btn btn-light rounded-pill px-4">Xem khu vực</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="area-card">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1400&auto=format&fit=crop"
+                alt="Tây Hồ Tây">
+              <div class="area-overlay"></div>
+              <div class="area-content">
+                <div class="area-mini">Tây Hồ, Hà Nội</div>
+                <h3>Tây Hồ Tây</h3>
+                <p class="mb-3 text-white-50">Căn hộ quốc tế, biệt thự giới hạn và quỹ tài sản cao cấp lõi thủ đô.</p>
+                <a href="#" class="btn btn-light rounded-pill px-4">Xem khu vực</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experts -->
+    <section class="section-space experts-section">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-5">
+          <div>
+            <span class="section-kicker">Môi giới chọn lọc</span>
+            <h2 class="section-title">Đội ngũ chuyên gia theo từng thị trường</h2>
+            <p class="section-desc">Từng hồ sơ môi giới được trình bày theo logic quen thuộc của cổng BĐS Việt Nam: khu
+              vực, sản phẩm, tầm giá, kinh nghiệm và nút liên hệ rõ ràng.</p>
+          </div>
+          <a href="#" class="btn btn-outline-dark rounded-pill px-4">Xem tất cả môi giới</a>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-4" data-aos="fade-up">
+            <div class="agent-card">
+              <img src="https://as1.ftcdn.net/jpg/07/20/44/88/1000_F_720448817_47VxnYl0g6V7YGkHr05pKVVZRNIXwSOG.jpg"
+                alt="Nguyễn Minh Khang">
+              <div class="agent-body">
+                <div class="agent-name">Nguyễn Minh Khang</div>
+                <div class="agent-role">Căn hộ cao cấp • Nhà phố • Dự án mới</div>
+                <div class="agent-tags">
+                  <span>8 năm kinh nghiệm</span>
+                  <span>Quận 2 • TP Thủ Đức</span>
+                  <span>Từ 3 - 12 tỷ</span>
+                </div>
+                <p class="agent-desc">Chuyên tư vấn căn hộ cao cấp, nhà phố compound và sản phẩm đầu tư tại Thủ Thiêm,
+                  An Phú, Thảo Điền và khu Đông.</p>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="#" class="btn btn-primary-custom flex-fill">Liên hệ ngay</a>
+                  <a href="#" class="btn btn-outline-secondary">Hồ sơ</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="agent-card">
+              <img src="https://as2.ftcdn.net/jpg/19/30/08/17/1000_F_1930081781_EmUjKo097NPWwA9swehBw0DefdQFFADy.jpg"
+                alt="Trần Thu Hà">
+              <div class="agent-body">
+                <div class="agent-name">Trần Thu Hà</div>
+                <div class="agent-role">Chung cư • Shophouse • Tư vấn đầu tư</div>
+                <div class="agent-tags">
+                  <span>6 năm kinh nghiệm</span>
+                  <span>Cầu Giấy • Tây Hồ</span>
+                  <span>Từ 2 - 20 tỷ</span>
+                </div>
+                <p class="agent-desc">Tập trung dòng căn hộ trung cao cấp, shophouse chân đế và sản phẩm đầu tư cho thuê
+                  tại các trục phát triển mới của Hà Nội.</p>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="#" class="btn btn-primary-custom flex-fill">Liên hệ ngay</a>
+                  <a href="#" class="btn btn-outline-secondary">Hồ sơ</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="agent-card">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop"
+                alt="Đặng Hải Yến">
+              <div class="agent-body">
+                <div class="agent-name">Đặng Hải Yến</div>
+                <div class="agent-role">Nghỉ dưỡng • Biệt thự biển • Shophouse</div>
+                <div class="agent-tags">
+                  <span>5 năm kinh nghiệm</span>
+                  <span>Đà Nẵng • Phú Quốc</span>
+                  <span>Từ 4 - 35 tỷ</span>
+                </div>
+                <p class="agent-desc">Hỗ trợ khách đầu tư bất động sản du lịch, second home, shophouse biển và tài sản
+                  khai thác kinh doanh tại các khu vực giàu tiềm năng.</p>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="#" class="btn btn-primary-custom flex-fill">Liên hệ ngay</a>
+                  <a href="#" class="btn btn-outline-secondary">Hồ sơ</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testi  monial -->
+    <section class="section-space testimonial-section">
+      <div class="container">
+        <div class="swiper testimonialSwiper" data-aos="zoom-in">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="testimonial-card">
+                <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                <p class="testimonial-text">
+                  “BatDongSan không chỉ giúp chúng tôi tìm thấy một nơi để ở, mà còn mang đến một tài sản thực
+                  sự có giá trị di sản. Cách họ hiểu về kiến trúc, thị trường và trải nghiệm sống là điều rất hiếm gặp.”
+                </p>
+                <div class="testimonial-author">Ông Trần Quang Huy</div>
+                <div class="testimonial-role">Nhà đầu tư bất động sản, TP.HCM</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="testimonial-card">
+                <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                <p class="testimonial-text">
+                  “Điều tôi thích nhất là cách đội ngũ tư vấn đúng nhu cầu, không bán đại trà. Thông tin rõ, hình ảnh
+                  đẹp, và trải nghiệm rất khác so với website bất động sản thông thường.”
+                </p>
+                <div class="testimonial-author">Bà Lê Minh Anh</div>
+                <div class="testimonial-role">Khách mua ở thật, Hà Nội</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="testimonial-card">
+                <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                <p class="testimonial-text">
+                  “Website mang cảm giác cao cấp nhưng vẫn rất dễ dùng. Từ khu vực, giá, môi giới đến sản phẩm đều được
+                  trình bày rõ ràng, đúng điều người dùng Việt cần.”
+                </p>
+                <div class="testimonial-author">Ông Phạm Đức Long</div>
+                <div class="testimonial-role">Chủ sở hữu tài sản, Đà Nẵng</div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination mt-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journal -->
+    <section class="section-space">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-5">
+          <div>
+            <span class="section-kicker">Tạp chí Curator</span>
+            <h2 class="section-title">Kiến trúc & lối sống Việt</h2>
+          </div>
+          <a href="#" class="btn btn-outline-dark rounded-pill px-4">Xem tất cả bài viết</a>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4" data-aos="fade-up">
+            <article class="journal-card">
+              <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"
+                alt="Kiến trúc tối giản">
+              <div class="journal-body">
+                <span class="journal-cat">Kiến trúc</span>
+                <h3 class="journal-title">Xu hướng tối giản trong nhà phố và biệt thự hiện đại tại Việt Nam</h3>
+                <p>Khám phá cách các không gian sống cao cấp tại TP.HCM và Hà Nội đang ưu tiên ánh sáng tự nhiên, vật
+                  liệu bền vững và bố cục tinh gọn.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <article class="journal-card">
+              <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop"
+                alt="Lối sống cao cấp">
+              <div class="journal-body">
+                <span class="journal-cat">Lối sống</span>
+                <h3 class="journal-title">Khi căn hộ hạng sang không chỉ là nơi ở mà là một tuyên ngôn phong cách sống
+                </h3>
+                <p>Những yếu tố đang định hình chuẩn sống mới của tầng lớp khách hàng cao cấp: vị trí, tiện ích riêng
+                  tư, tầm nhìn và trải nghiệm cá nhân hóa.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <article class="journal-card">
+              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop"
+                alt="Đầu tư bất động sản">
+              <div class="journal-body">
+                <span class="journal-cat">Đầu tư</span>
+                <h3 class="journal-title">Bất động sản cao cấp tại Việt Nam: tài sản giữ giá trong dài hạn</h3>
+                <p>Vì sao các sản phẩm có vị trí lõi đô thị, pháp lý rõ ràng và thiết kế khác biệt vẫn luôn giữ được lực
+                  cầu tốt qua nhiều chu kỳ.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-space cta-section text-center">
+      <div class="container" data-aos="zoom-in-up">
+        <span class="section-kicker text-white">Dành cho chủ sở hữu</span>
+        <h2 class="cta-title">Sẵn sàng giới thiệu <br>kiệt tác của bạn?</h2>
+        <p class="cta-text">
+          Gia nhập mạng lưới tinh chọn gồm các chủ sở hữu, nhà phát triển và nhà đầu tư tin tưởng BatDongSan để
+          đại diện cho những tài sản giá trị nhất tại Việt Nam.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+          <a href="#" class="btn btn-light fw-bold px-4 py-3 rounded-3">
+            <i class="fa-solid fa-network-wired me-2"></i>Tham gia mạng lưới
+          </a>
+          <a href="#" class="btn btn-outline-custom">
+            <i class="fa-solid fa-chart-line me-2"></i>Yêu cầu định giá
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer pt-5">
+    <div class="container py-4">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand">BatDongSan</div>
+          <p class="mb-0">
+            Nâng tầm trải nghiệm bất động sản thông qua giám tuyển kiến trúc, dữ liệu thị trường và dịch vụ đại diện cao
+            cấp tại Việt Nam.
+          </p>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <div class="footer-title">Danh mục</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="index.html">Trang chủ</a>
+            <a href="properties.html">Mua bán</a>
+            <a href="properties.html">Cho thuê</a>
+            <a href="projects.html">Dự án</a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="footer-title">Khu vực</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="areas.html">Thảo Điền</a>
+            <a href="areas.html">Phú Mỹ Hưng</a>
+            <a href="areas.html">Tây Hồ Tây</a>
+            <a href="areas.html">Đà Nẵng</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="footer-title">Liên hệ</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="#">Hotline: 0909 123 456</a>
+            <a href="#">Email: contact@digitalcurator.vn</a>
+            <a href="join-team.html">Gia nhập đội ngũ</a>
+            <a href="#">Chính sách bảo mật</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container py-3 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <div class="small">© 2026 BatDongSan. Bảo lưu mọi quyền.</div>
+        <div class="d-flex gap-3">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <script>
+    // Navbar scroll
+    $(window).on("scroll", function () {
+      if ($(this).scrollTop() > 30) {
+        $("#mainNavbar").addClass("navbar-scrolled");
+      } else {
+        $("#mainNavbar").removeClass("navbar-scrolled");
+      }
+    });
+
+    // AOS
+    AOS.init({
+      once: true,
+      duration: 900,
+      easing: "ease-out-cubic"
+    });
+
+    // GSAP hero
+    gsap.from("#heroTitle", {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    gsap.from("#heroDesc", {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.2,
+      ease: "power3.out"
+    });
+
+    gsap.from("#heroButtons a", {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.4,
+      stagger: 0.12,
+      ease: "power3.out"
+    });
+
+    gsap.from("#heroStats .hero-stat", {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.6,
+      stagger: 0.12,
+      ease: "power3.out"
+    });
+
+    // Counter
+    const counters = document.querySelectorAll(".counter");
+    const runCounter = () => {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute("data-target");
+        let current = 0;
+        const increment = Math.ceil(target / 60);
+
+        const updateCounter = () => {
+          current += increment;
+          if (current < target) {
+            counter.textContent = current.toLocaleString("vi-VN") + "+";
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target.toLocaleString("vi-VN") + "+";
+          }
+        };
+
+        updateCounter();
+      });
+    };
+
+    let counterStarted = false;
+    const heroStats = document.getElementById("heroStats");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !counterStarted) {
+          runCounter();
+          counterStarted = true;
+        }
+      });
+    }, { threshold: 0.4 });
+
+    if (heroStats) observer.observe(heroStats);
+
+    // Swiper - properties
+    new Swiper(".propertySwiper", {
+      slidesPerView: 1.15,
+      spaceBetween: 20,
+      loop: true,
+      pagination: {
+        el: ".propertySwiper .swiper-pagination",
+        clickable: true
+      },
+      navigation: {
+        nextEl: ".propertySwiper .swiper-button-next",
+        prevEl: ".propertySwiper .swiper-button-prev"
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 24
+        },
+        1200: {
+          slidesPerView: 3,
+          spaceBetween: 28
+        }
+      }
+    });
+
+    // Swiper - testimonials
+    new Swiper(".testimonialSwiper", {
+      slidesPerView: 1,
+      loop: true,
+      autoplay: {
+        delay: 4500,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: ".testimonialSwiper .swiper-pagination",
+        clickable: true
+      }
+    });
+
+    // Lightbox config
+    lightbox.option({
+      resizeDuration: 200,
+      wrapAround: true,
+      albumLabel: "Ảnh %1 / %2",
+      fadeDuration: 200,
+      imageFadeDuration: 200
+    });
+
+    // Particles
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 40,
+          density: { enable: true, value_area: 900 }
+        },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: {
+          value: 0.18,
+          random: true
+        },
+        size: {
+          value: 3,
+          random: true
+        },
+        line_linked: {
+          enable: true,
+          distance: 140,
+          color: "#ffffff",
+          opacity: 0.08,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 1.6,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: false },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 140,
+            line_linked: { opacity: 0.2 }
+          }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Demo Search Feature
+    $(document).ready(function () {
+      // 1. Home Search
+      $('#homeSearchBtn').on('click', function (e) {
+        e.preventDefault();
+        let query = $('#homeSearchInput').val() || '';
+        let type = $('#homeSearchType').val() || '';
+        let btn = $(this);
+        btn.html('<i class="fa-solid fa-spinner fa-spin me-2"></i>Đang tìm...');
+
+        setTimeout(function () {
+          window.location.href = 'properties.html?q=' + encodeURIComponent(query);
+        }, 600);
+      });
+
+      // 2. Properties Page Auto-filter
+      const urlParams = new URLSearchParams(window.location.search);
+      const q = urlParams.get('q');
+      if (q) {
+        $('.filter-input').val(q);
+        setTimeout(() => filterProperties(q), 300);
+      }
+
+      // 3. Properties Page Filter Action
+      $('.filter-btn').on('click', function (e) {
+        e.preventDefault();
+        let query = $('.filter-input').val() || '';
+        let btn = $(this);
+        let originalText = btn.html();
+        btn.html('<i class="fa-solid fa-spinner fa-spin"></i>');
+
+        setTimeout(function () {
+          btn.html(originalText);
+          filterProperties(query);
+        }, 500);
+      });
+
+      function filterProperties(query) {
+        query = query.toLowerCase();
+        $('.property-card').each(function () {
+          let text = $(this).text().toLowerCase();
+          if (text.indexOf(query) > -1) {
+            $(this).closest('.col-md-4').fadeIn();
+          } else {
+            $(this).closest('.col-md-4').fadeOut();
+          }
+        });
+      }
+    });
+
+  </script>
+</body>
+
+</html>
