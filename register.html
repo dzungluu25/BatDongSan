@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Đăng ký tài khoản | BatDongSan</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --primary-dark: #0b3760;
+      --secondary: #d7a85c;
+      --bg-soft: #f6f8fb;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 16px 40px rgba(15, 76, 129, 0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: "Inter", sans-serif; color: var(--text-main); background: var(--bg-soft); overflow-x: hidden; min-height: 100vh; }
+    h1, h2, h3, h4, h5, h6, .navbar-brand, .btn { font-family: "Manrope", sans-serif; }
+
+    /* Topbar */
+    .topbar { background: #0a1b30; color: rgba(255,255,255,.78); font-size: 13px; }
+    .topbar a { color: rgba(255,255,255,.85); text-decoration: none; }
+    .topbar a:hover { color: #fff; }
+
+    /* Navbar */
+    .navbar-custom { background: rgba(255,255,255,.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,.06); }
+    .navbar-scrolled { box-shadow: 0 10px 30px rgba(15,23,42,.08); }
+    .navbar-brand { font-weight: 800; font-size: 1.7rem; letter-spacing: -0.04em; color: var(--primary); }
+    .nav-link-custom { display: block; padding: 0.5rem 0; color: #475569; font-weight: 700; font-size: .95rem; text-decoration: none; transition: .2s ease; }
+    .nav-link-custom:hover { color: var(--primary); }
+    .btn-primary-custom { background: var(--primary); border: 1px solid var(--primary); color: #fff; border-radius: 12px; padding: .85rem 1.3rem; font-weight: 800; }
+    .btn-primary-custom:hover { background: var(--primary-dark); border-color: var(--primary-dark); color: #fff; }
+
+    /* Register card */
+    .register-wrapper {
+      min-height: calc(100vh - 70px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 16px 60px;
+    }
+
+    .register-card {
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 0 24px 64px rgba(15, 76, 129, 0.1);
+      overflow: hidden;
+      width: 100%;
+      max-width: 960px;
+    }
+
+    .register-left {
+      background: linear-gradient(145deg, #0b3760 0%, #0f4c81 50%, #1a6aad 100%);
+      color: #fff;
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .register-left::before {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+    }
+
+    .register-left::after {
+      content: "";
+      position: absolute;
+      left: -60px;
+      top: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+
+    .register-brand { font-size: 2rem; font-weight: 800; letter-spacing: -0.04em; position: relative; z-index: 1; }
+    .register-left-body { position: relative; z-index: 1; }
+    .register-left h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 1rem; }
+    .register-left p { color: rgba(255,255,255,.78); line-height: 1.85; }
+
+    .benefit-item { display: flex; gap: .85rem; align-items: flex-start; margin-bottom: 1.2rem; }
+    .benefit-icon { width: 42px; height: 42px; border-radius: 12px; background: rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+    .benefit-text strong { display: block; font-weight: 700; margin-bottom: .2rem; }
+    .benefit-text span { color: rgba(255,255,255,.68); font-size: .9rem; }
+
+    .register-right { padding: 3rem 2.5rem; }
+    .register-right h3 { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: .4rem; }
+    .register-right .subtitle { color: var(--text-muted); margin-bottom: 2rem; }
+
+    .form-label { font-weight: 700; font-size: .9rem; color: #374151; margin-bottom: .5rem; }
+    .form-control, .form-select { border-radius: 12px; border-color: #e2e8f0; min-height: 50px; font-size: .95rem; box-shadow: none !important; }
+    .form-control:focus, .form-select:focus { border-color: #8ab6d6; }
+
+    .password-toggle { position: relative; }
+    .password-toggle input { padding-right: 48px; }
+    .password-toggle .toggle-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0;
+      font-size: .95rem;
+    }
+
+    .btn-register {
+      background: linear-gradient(135deg, var(--primary), #1a6aad);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: .95rem;
+      font-weight: 800;
+      font-size: 1rem;
+      width: 100%;
+      transition: .25s ease;
+    }
+
+    .btn-register:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15,76,129,.25);
+    }
+
+    .divider { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); font-size: .85rem; margin: 1.2rem 0; }
+    .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #e5e7eb; }
+
+    .btn-social {
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: .75rem;
+      background: #fff;
+      font-weight: 700;
+      font-size: .9rem;
+      color: #374151;
+      width: 100%;
+      transition: .2s ease;
+    }
+    .btn-social:hover { border-color: #94a3b8; background: var(--bg-soft); }
+
+    .strength-bar { height: 4px; border-radius: 999px; background: #e5e7eb; margin-top: .5rem; overflow: hidden; }
+    .strength-fill { height: 100%; border-radius: 999px; width: 0%; transition: width .3s ease, background .3s ease; }
+
+    .terms-note { font-size: .84rem; color: var(--text-muted); line-height: 1.7; }
+    .terms-note a { color: var(--primary); text-decoration: none; }
+    .terms-note a:hover { text-decoration: underline; }
+
+    /* Footer */
+    .footer { background: #0b1220; color: #cbd5e1; }
+    .footer-brand { font-size: 1.9rem; font-weight: 800; color: #fff; font-family: "Manrope", sans-serif; margin-bottom: 1rem; }
+    .footer-title { color: #fff; font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .16em; margin-bottom: 1rem; }
+    .footer a { color: #94a3b8; text-decoration: none; }
+    .footer a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); }
+
+    @media (max-width: 767px) {
+      .register-left { min-height: auto; padding: 2rem 1.5rem; }
+      .register-right { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar py-2 d-none d-md-block">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-4">
+          <span><i class="fa-solid fa-phone me-2"></i>0909 123 456</span>
+          <span><i class="fa-solid fa-envelope me-2"></i>contact@digitalcurator.vn</span>
+        </div>
+        <div class="d-flex gap-4">
+          <a href="#"><i class="fa-brands fa-facebook-f me-2"></i>Facebook</a>
+          <a href="#"><i class="fa-brands fa-instagram me-2"></i>Instagram</a>
+          <a href="#"><i class="fa-brands fa-linkedin-in me-2"></i>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-custom" id="mainNavbar">
+    <div class="container py-2">
+      <a class="navbar-brand text-decoration-none" href="index.html">BatDongSan</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav mx-auto gap-2 gap-lg-4 py-3 py-lg-0">
+          <li class="nav-item"><a class="nav-link-custom" href="index.html">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="properties.html">Mua bán</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="properties.html">Cho thuê</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="projects.html">Dự án</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="agents.html">Môi giới</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="blog.html">Tạp chí</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="about.html">Về chúng tôi</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="contact.html">Liên hệ</a></li>
+        </ul>
+        <div class="d-flex flex-column flex-lg-row gap-3 mt-2 mt-lg-0 pb-3 pb-lg-0">
+          <a class="btn btn-light border fw-bold px-3 py-2" href="login.html">Đăng nhập</a>
+          <a class="btn btn-primary-custom text-center py-2" href="post-property.html">Đăng tin</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Register Form -->
+  <div class="register-wrapper">
+    <div class="register-card" data-aos="fade-up" data-aos-duration="700">
+      <div class="row g-0">
+
+        <!-- Left panel -->
+        <div class="col-lg-5 register-left">
+          <div class="register-brand">BatDongSan</div>
+
+          <div class="register-left-body mt-4 mt-lg-0">
+            <h2>Bắt đầu hành trình bất động sản của bạn</h2>
+            <p class="mb-4">Đăng ký miễn phí để khám phá hàng nghìn tài sản cao cấp và kết nối với các chuyên viên hàng đầu.</p>
+
+            <div class="benefit-item">
+              <div class="benefit-icon"><i class="fa-solid fa-heart"></i></div>
+              <div class="benefit-text">
+                <strong>Lưu danh sách yêu thích</strong>
+                <span>Theo dõi các tài sản bạn quan tâm dễ dàng</span>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-icon"><i class="fa-solid fa-bell"></i></div>
+              <div class="benefit-text">
+                <strong>Nhận thông báo mới nhất</strong>
+                <span>Cập nhật ngay khi có bất động sản phù hợp</span>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-icon"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="benefit-text">
+                <strong>Kết nối môi giới trực tiếp</strong>
+                <span>Chat và đặt lịch xem nhà nhanh chóng</span>
+              </div>
+            </div>
+
+            <div class="benefit-item">
+              <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <div class="benefit-text">
+                <strong>Phân tích thị trường cá nhân hóa</strong>
+                <span>Báo cáo giá và xu hướng theo khu vực bạn chọn</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4" style="position:relative;z-index:1;">
+            <p class="small mb-2" style="color:rgba(255,255,255,.6);">Đã có tài khoản?</p>
+            <a href="login.html" class="btn btn-outline-light fw-bold px-4 py-2" style="border-radius:12px;">Đăng nhập ngay</a>
+          </div>
+        </div>
+
+        <!-- Right panel -->
+        <div class="col-lg-7 register-right">
+          <h3>Tạo tài khoản mới</h3>
+          <p class="subtitle">Điền thông tin bên dưới để bắt đầu</p>
+
+          <!-- Social login -->
+          <div class="row g-3 mb-3">
+            <div class="col-6">
+              <button class="btn-social">
+                <img src="https://www.google.com/favicon.ico" width="18" class="me-2" alt="Google">Google
+              </button>
+            </div>
+            <div class="col-6">
+              <button class="btn-social">
+                <i class="fa-brands fa-facebook-f me-2" style="color:#1877f2;"></i>Facebook
+              </button>
+            </div>
+          </div>
+
+          <div class="divider">hoặc đăng ký bằng email</div>
+
+          <form id="registerForm" novalidate>
+            <div class="row g-3">
+              <!-- Full name -->
+              <div class="col-sm-6">
+                <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="fullName" placeholder="Nguyễn Văn A" required>
+                <div class="invalid-feedback">Vui lòng nhập họ và tên.</div>
+              </div>
+
+              <!-- Phone -->
+              <div class="col-sm-6">
+                <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text" style="border-radius:12px 0 0 12px;border-color:#e2e8f0;">🇻🇳 +84</span>
+                  <input type="tel" class="form-control" id="phone" placeholder="909 123 456" required style="border-radius:0 12px 12px 0;">
+                </div>
+                <div class="invalid-feedback">Vui lòng nhập số điện thoại hợp lệ.</div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-12">
+                <label class="form-label">Địa chỉ email <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text" style="border-radius:12px 0 0 12px;border-color:#e2e8f0;"><i class="fa-solid fa-envelope text-muted"></i></span>
+                  <input type="email" class="form-control" id="email" placeholder="email@example.com" required style="border-radius:0 12px 12px 0;">
+                </div>
+                <div class="invalid-feedback">Vui lòng nhập địa chỉ email hợp lệ.</div>
+              </div>
+
+              <!-- Account type -->
+              <div class="col-12">
+                <label class="form-label">Loại tài khoản <span class="text-danger">*</span></label>
+                <select class="form-select" id="accountType" required>
+                  <option value="">Chọn loại tài khoản</option>
+                  <option value="buyer">Người mua / thuê bất động sản</option>
+                  <option value="seller">Chủ sở hữu bất động sản</option>
+                  <option value="agent">Môi giới / Chuyên viên tư vấn</option>
+                  <option value="investor">Nhà đầu tư</option>
+                </select>
+                <div class="invalid-feedback">Vui lòng chọn loại tài khoản.</div>
+              </div>
+
+              <!-- Password -->
+              <div class="col-sm-6">
+                <label class="form-label">Mật khẩu <span class="text-danger">*</span></label>
+                <div class="password-toggle">
+                  <input type="password" class="form-control" id="password" placeholder="Ít nhất 8 ký tự" required>
+                  <button type="button" class="toggle-btn" id="togglePassword"><i class="fa-solid fa-eye"></i></button>
+                </div>
+                <div class="strength-bar mt-2"><div class="strength-fill" id="strengthFill"></div></div>
+                <div class="invalid-feedback">Mật khẩu phải có ít nhất 8 ký tự.</div>
+              </div>
+
+              <!-- Confirm password -->
+              <div class="col-sm-6">
+                <label class="form-label">Xác nhận mật khẩu <span class="text-danger">*</span></label>
+                <div class="password-toggle">
+                  <input type="password" class="form-control" id="confirmPassword" placeholder="Nhập lại mật khẩu" required>
+                  <button type="button" class="toggle-btn" id="toggleConfirm"><i class="fa-solid fa-eye"></i></button>
+                </div>
+                <div class="invalid-feedback">Mật khẩu xác nhận không khớp.</div>
+              </div>
+
+              <!-- Referral code (optional) -->
+              <div class="col-12">
+                <label class="form-label">Mã giới thiệu <span class="text-muted fw-normal">(tuỳ chọn)</span></label>
+                <input type="text" class="form-control" id="referral" placeholder="Nhập mã giới thiệu nếu có">
+              </div>
+
+              <!-- Terms -->
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                  <label class="form-check-label terms-note" for="agreeTerms">
+                    Tôi đồng ý với <a href="terms.html">Điều khoản sử dụng</a> và <a href="privacy.html">Chính sách bảo mật</a> của BatDongSan
+                  </label>
+                  <div class="invalid-feedback">Bạn phải đồng ý với điều khoản để tiếp tục.</div>
+                </div>
+              </div>
+
+              <!-- Newsletter -->
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="newsletter" checked>
+                  <label class="form-check-label terms-note" for="newsletter">
+                    Nhận email cập nhật thị trường và tin tức bất động sản từ BatDongSan
+                  </label>
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <div class="col-12 mt-2">
+                <button type="submit" class="btn btn-register" id="registerBtn">
+                  <i class="fa-solid fa-user-plus me-2"></i>Tạo tài khoản miễn phí
+                </button>
+              </div>
+
+              <div class="col-12 text-center">
+                <p class="text-muted mb-0" style="font-size:.9rem;">
+                  Đã có tài khoản? <a href="login.html" style="color:var(--primary);font-weight:700;text-decoration:none;">Đăng nhập</a>
+                </p>
+              </div>
+            </div>
+          </form>
+
+          <!-- Success alert (hidden) -->
+          <div class="alert alert-success d-none mt-3 rounded-3" id="successAlert">
+            <i class="fa-solid fa-circle-check me-2"></i>
+            <strong>Đăng ký thành công!</strong> Vui lòng kiểm tra email để xác nhận tài khoản.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer pt-5">
+    <div class="container py-4">
+      <div class="row g-4">
+        <div class="col-lg-3">
+          <div class="footer-brand">BatDongSan</div>
+          <p class="mb-0">Nâng tầm trải nghiệm bất động sản thông qua giám tuyển kiến trúc, dữ liệu thị trường và dịch vụ đại diện cao cấp tại Việt Nam.</p>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="footer-title">Danh mục</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="index.html">Trang chủ</a>
+            <a href="properties.html">Mua bán</a>
+            <a href="properties.html">Cho thuê</a>
+            <a href="projects.html">Dự án</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="footer-title">Về chúng tôi</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="about.html">Giới thiệu</a>
+            <a href="agents.html">Đội ngũ</a>
+            <a href="blog.html">Tạp chí</a>
+            <a href="join-team.html">Tuyển dụng</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="footer-title">Hỗ trợ</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="faq.html">Câu hỏi thường gặp</a>
+            <a href="contact.html">Liên hệ</a>
+            <a href="privacy.html">Chính sách bảo mật</a>
+            <a href="terms.html">Điều khoản sử dụng</a>
+          </div>
+        </div>
+        <div class="col-lg-3 mt-4 mt-lg-0">
+          <div class="footer-title">Bản đồ</div>
+          <div class="rounded-3 overflow-hidden shadow-sm" style="height:140px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5132740348737!2d106.70181557579135!3d10.771946089376662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f416ca22ebf%3A0xe549bd92bf2cf502!2sBitexco%20Financial%20Tower!5e0!3m2!1sen!2svn!4v1700000000000!5m2!1sen!2svn" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container py-3 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <div class="small">© 2026 BatDongSan. Bảo lưu mọi quyền.</div>
+        <div class="d-flex gap-3">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // Navbar scroll
+    $(window).on("scroll", function () {
+      if ($(this).scrollTop() > 30) $("#mainNavbar").addClass("navbar-scrolled");
+      else $("#mainNavbar").removeClass("navbar-scrolled");
+    });
+
+    AOS.init({ once: true, duration: 800, easing: "ease-out-cubic" });
+
+    // Password toggle
+    function setupToggle(btnId, inputId) {
+      document.getElementById(btnId).addEventListener('click', function () {
+        const input = document.getElementById(inputId);
+        const icon = this.querySelector('i');
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.className = 'fa-solid fa-eye-slash';
+        } else {
+          input.type = 'password';
+          icon.className = 'fa-solid fa-eye';
+        }
+      });
+    }
+    setupToggle('togglePassword', 'password');
+    setupToggle('toggleConfirm', 'confirmPassword');
+
+    // Password strength
+    document.getElementById('password').addEventListener('input', function () {
+      const val = this.value;
+      const fill = document.getElementById('strengthFill');
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+
+      const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e'];
+      const widths = ['25%', '50%', '75%', '100%'];
+      fill.style.width = score > 0 ? widths[score - 1] : '0%';
+      fill.style.background = score > 0 ? colors[score - 1] : '';
+    });
+
+    // Form validation
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      // Name
+      const name = document.getElementById('fullName');
+      if (!name.value.trim()) { name.classList.add('is-invalid'); valid = false; }
+      else name.classList.remove('is-invalid');
+
+      // Phone
+      const phone = document.getElementById('phone');
+      if (!phone.value.trim() || phone.value.trim().length < 9) { phone.classList.add('is-invalid'); valid = false; }
+      else phone.classList.remove('is-invalid');
+
+      // Email
+      const email = document.getElementById('email');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email.value)) { email.classList.add('is-invalid'); valid = false; }
+      else email.classList.remove('is-invalid');
+
+      // Account type
+      const type = document.getElementById('accountType');
+      if (!type.value) { type.classList.add('is-invalid'); valid = false; }
+      else type.classList.remove('is-invalid');
+
+      // Password
+      const pwd = document.getElementById('password');
+      if (pwd.value.length < 8) { pwd.classList.add('is-invalid'); valid = false; }
+      else pwd.classList.remove('is-invalid');
+
+      // Confirm password
+      const confirmPwd = document.getElementById('confirmPassword');
+      if (confirmPwd.value !== pwd.value || !confirmPwd.value) { confirmPwd.classList.add('is-invalid'); valid = false; }
+      else confirmPwd.classList.remove('is-invalid');
+
+      // Terms
+      const terms = document.getElementById('agreeTerms');
+      if (!terms.checked) { terms.classList.add('is-invalid'); valid = false; }
+      else terms.classList.remove('is-invalid');
+
+      if (valid) {
+        const btn = document.getElementById('registerBtn');
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Đang xử lý...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-solid fa-user-plus me-2"></i>Tạo tài khoản miễn phí';
+          btn.disabled = false;
+          document.getElementById('successAlert').classList.remove('d-none');
+          document.getElementById('registerForm').reset();
+          document.getElementById('strengthFill').style.width = '0%';
+          document.getElementById('successAlert').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 1500);
+      }
+    });
+  </script>
+</body>
+</html>

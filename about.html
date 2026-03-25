@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Về chúng tôi | BatDongSan</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --primary-dark: #0b3760;
+      --secondary: #d7a85c;
+      --bg-soft: #f6f8fb;
+      --bg-ivory: #fbfaf7;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 16px 40px rgba(15, 76, 129, 0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Inter", sans-serif; color: var(--text-main); background: #fff; overflow-x: hidden; }
+    h1,h2,h3,h4,h5,h6,.navbar-brand,.btn,.section-title { font-family: "Manrope", sans-serif; }
+    .section-space { padding: 96px 0; }
+    .section-kicker { display: inline-block; font-size: .82rem; text-transform: uppercase; letter-spacing: .18em; font-weight: 800; color: var(--secondary); margin-bottom: 12px; }
+    .section-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; color: #0f172a; margin-bottom: 0; }
+    .section-desc { color: var(--text-muted); line-height: 1.9; max-width: 760px; margin-top: 16px; }
+
+    /* Topbar */
+    .topbar { background: #0a1b30; color: rgba(255,255,255,.78); font-size: 13px; }
+    .topbar a { color: rgba(255,255,255,.85); text-decoration: none; }
+    .topbar a:hover { color: #fff; }
+
+    /* Navbar */
+    .navbar-custom { background: rgba(255,255,255,.85); backdrop-filter: blur(16px); transition: all .3s ease; border-bottom: 1px solid rgba(0,0,0,.04); }
+    .navbar-scrolled { box-shadow: 0 10px 30px rgba(15,23,42,.08); background: rgba(255,255,255,.96); }
+    .navbar-brand { font-weight: 800; font-size: 1.7rem; letter-spacing: -0.04em; color: var(--primary); }
+    .nav-link-custom { display: block; padding: 0.5rem 0; color: #475569; font-weight: 700; font-size: .95rem; text-decoration: none; transition: .2s ease; position: relative; }
+    .nav-link-custom:hover,.nav-link-custom.active { color: var(--primary); }
+    @media (min-width: 992px) {
+      .nav-link-custom.active::after { content: ""; position: absolute; left: 0; bottom: -8px; width: 100%; height: 2px; background: var(--secondary); }
+    }
+    .btn-primary-custom { background: var(--primary); border: 1px solid var(--primary); color: #fff; border-radius: 12px; padding: .85rem 1.3rem; font-weight: 800; letter-spacing: .02em; }
+    .btn-primary-custom:hover { background: var(--primary-dark); border-color: var(--primary-dark); color: #fff; }
+
+    /* Hero */
+    .page-hero {
+      background: linear-gradient(135deg, #0b3760 0%, #0f4c81 60%, #1a6aad 100%);
+      color: #fff;
+      padding: 160px 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+
+    /* Stats */
+    .stat-box { background: #fff; border-radius: 20px; padding: 2rem 1.5rem; text-align: center; box-shadow: var(--shadow-soft); border: 1px solid #eef2f7; }
+    .stat-number { font-family: "Manrope", sans-serif; font-size: 3rem; font-weight: 800; color: var(--primary); line-height: 1; }
+    .stat-label { color: var(--text-muted); font-size: .9rem; margin-top: .5rem; }
+
+    /* Team card */
+    .team-card { background: #fff; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid #eef2f7; transition: transform .25s ease, box-shadow .25s ease; }
+    .team-card:hover { transform: translateY(-5px); box-shadow: 0 22px 45px rgba(15,76,129,0.12); }
+    .team-card img { width: 100%; height: 280px; object-fit: cover; }
+    .team-body { padding: 1.4rem; }
+    .team-name { font-family: "Manrope", sans-serif; font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: .2rem; }
+    .team-role { color: var(--primary); font-weight: 700; font-size: .9rem; margin-bottom: .75rem; }
+
+    /* Values */
+    .value-card { background: #fff; border-radius: 20px; padding: 2rem; box-shadow: var(--shadow-soft); border: 1px solid #eef2f7; height: 100%; transition: transform .25s ease; }
+    .value-card:hover { transform: translateY(-4px); }
+    .value-icon { width: 60px; height: 60px; border-radius: 18px; background: #edf5fc; color: var(--primary); display: inline-flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+
+    /* Timeline */
+    .timeline { position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #e5e7eb; transform: translateX(-50%); }
+    .timeline-item { display: flex; gap: 2rem; margin-bottom: 3rem; }
+    .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+    .timeline-content { background: #fff; border-radius: 18px; padding: 1.5rem; box-shadow: var(--shadow-soft); border: 1px solid #eef2f7; flex: 1; }
+    .timeline-year { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--primary); margin-bottom: .5rem; }
+    .timeline-dot { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; align-self: center; z-index: 1; font-size: .85rem; font-weight: 800; }
+
+    /* Footer */
+    .footer { background: #0b1220; color: #cbd5e1; }
+    .footer-brand { font-size: 1.9rem; font-weight: 800; color: #fff; font-family: "Manrope", sans-serif; margin-bottom: 1rem; }
+    .footer-title { color: #fff; font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .16em; margin-bottom: 1rem; }
+    .footer a { color: #94a3b8; text-decoration: none; }
+    .footer a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); }
+
+    @media (max-width: 767px) {
+      .section-space { padding: 72px 0; }
+      .timeline::before { left: 24px; }
+      .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; padding-left: 60px; }
+      .timeline-dot { position: absolute; left: 0; }
+      .timeline-item { position: relative; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar py-2 d-none d-md-block">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-4">
+          <span><i class="fa-solid fa-phone me-2"></i>0909 123 456</span>
+          <span><i class="fa-solid fa-envelope me-2"></i>contact@digitalcurator.vn</span>
+        </div>
+        <div class="d-flex gap-4">
+          <a href="#"><i class="fa-brands fa-facebook-f me-2"></i>Facebook</a>
+          <a href="#"><i class="fa-brands fa-instagram me-2"></i>Instagram</a>
+          <a href="#"><i class="fa-brands fa-linkedin-in me-2"></i>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-custom" id="mainNavbar">
+    <div class="container py-2">
+      <a class="navbar-brand text-decoration-none" href="index.html">BatDongSan</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav mx-auto gap-2 gap-lg-4 py-3 py-lg-0">
+          <li class="nav-item"><a class="nav-link-custom" href="index.html">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="properties.html">Mua bán</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="properties.html">Cho thuê</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="projects.html">Dự án</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="agents.html">Môi giới</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="blog.html">Tạp chí</a></li>
+          <li class="nav-item"><a class="nav-link-custom active" href="about.html">Về chúng tôi</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="contact.html">Liên hệ</a></li>
+        </ul>
+        <div class="d-flex flex-column flex-lg-row gap-3 mt-2 mt-lg-0 pb-3 pb-lg-0">
+          <a class="btn btn-light border fw-bold px-3 py-2" href="login.html">Đăng nhập</a>
+          <a class="btn btn-primary-custom text-center py-2" href="post-property.html">Đăng tin</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8" data-aos="fade-up">
+            <span class="section-kicker">Về chúng tôi</span>
+            <h1 class="section-title text-white mt-2 mb-4">Đơn vị bất động sản<br>hàng đầu Việt Nam</h1>
+            <p class="section-desc text-white-50">Với hơn 10 năm kinh nghiệm, BatDongSan là nền tảng kết nối mua bán, cho thuê và đầu tư bất động sản chuyên nghiệp, minh bạch và đáng tin cậy nhất tại Việt Nam.</p>
+            <div class="d-flex gap-3 flex-wrap mt-4">
+              <a href="contact.html" class="btn btn-primary-custom px-4 py-3">Liên hệ ngay</a>
+              <a href="properties.html" class="btn btn-outline-light px-4 py-3 fw-bold" style="border-radius:12px;">Xem bất động sản</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section-space bg-white">
+      <div class="container">
+        <div class="row g-4 text-center" data-aos="fade-up">
+          <div class="col-6 col-md-3">
+            <div class="stat-box">
+              <div class="stat-number">10+</div>
+              <div class="stat-label">Năm kinh nghiệm</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-box">
+              <div class="stat-number">5.200+</div>
+              <div class="stat-label">Bất động sản</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-box">
+              <div class="stat-number">12.000+</div>
+              <div class="stat-label">Khách hàng hài lòng</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-box">
+              <div class="stat-number">320+</div>
+              <div class="stat-label">Chuyên viên tư vấn</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="section-space" style="background: var(--bg-soft);">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=800&auto=format&fit=crop" alt="Office" class="img-fluid rounded-4 shadow-lg">
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <span class="section-kicker">Sứ mệnh & Tầm nhìn</span>
+            <h2 class="section-title mt-2 mb-4">Chúng tôi tồn tại để<br>phục vụ bạn tốt hơn</h2>
+            <p class="section-desc mb-4">BatDongSan ra đời với mục tiêu xây dựng một hệ sinh thái bất động sản hoàn chỉnh — nơi người mua, người bán và nhà đầu tư có thể gặp nhau trong sự minh bạch và chuyên nghiệp.</p>
+            <ul class="list-unstyled d-flex flex-column gap-3">
+              <li class="d-flex gap-3 align-items-start">
+                <div class="value-icon" style="min-width:48px;height:48px;width:48px;border-radius:14px;"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                  <div class="fw-bold mb-1">Minh bạch 100%</div>
+                  <div class="text-muted" style="line-height:1.7">Mọi thông tin bất động sản được xác minh và cập nhật liên tục.</div>
+                </div>
+              </li>
+              <li class="d-flex gap-3 align-items-start">
+                <div class="value-icon" style="min-width:48px;height:48px;width:48px;border-radius:14px;"><i class="fa-solid fa-users"></i></div>
+                <div>
+                  <div class="fw-bold mb-1">Đội ngũ chuyên nghiệp</div>
+                  <div class="text-muted" style="line-height:1.7">Hơn 320 chuyên viên được đào tạo bài bản, am hiểu thị trường địa phương.</div>
+                </div>
+              </li>
+              <li class="d-flex gap-3 align-items-start">
+                <div class="value-icon" style="min-width:48px;height:48px;width:48px;border-radius:14px;"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                  <div class="fw-bold mb-1">Phân tích thị trường</div>
+                  <div class="text-muted" style="line-height:1.7">Báo cáo và phân tích chuyên sâu giúp bạn đưa ra quyết định đầu tư đúng đắn.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section-space bg-white">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <span class="section-kicker">Giá trị cốt lõi</span>
+          <h2 class="section-title mt-2">Những gì chúng tôi theo đuổi</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+            <div class="value-card text-center">
+              <div class="value-icon mx-auto"><i class="fa-solid fa-handshake"></i></div>
+              <h5 class="fw-bold mb-2">Tin cậy</h5>
+              <p class="text-muted mb-0">Xây dựng mối quan hệ lâu dài dựa trên sự trung thực và nhất quán.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="value-card text-center">
+              <div class="value-icon mx-auto"><i class="fa-solid fa-lightbulb"></i></div>
+              <h5 class="fw-bold mb-2">Đổi mới</h5>
+              <p class="text-muted mb-0">Liên tục cải tiến công nghệ và phương pháp để mang lại trải nghiệm tốt nhất.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="value-card text-center">
+              <div class="value-icon mx-auto"><i class="fa-solid fa-star"></i></div>
+              <h5 class="fw-bold mb-2">Xuất sắc</h5>
+              <p class="text-muted mb-0">Cam kết chất lượng vượt trội trong từng dịch vụ và sản phẩm cung cấp.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="value-card text-center">
+              <div class="value-icon mx-auto"><i class="fa-solid fa-heart"></i></div>
+              <h5 class="fw-bold mb-2">Tận tâm</h5>
+              <p class="text-muted mb-0">Đặt lợi ích và sự hài lòng của khách hàng lên hàng đầu trong mọi quyết định.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section-space" style="background: var(--bg-soft);">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <span class="section-kicker">Đội ngũ lãnh đạo</span>
+          <h2 class="section-title mt-2">Những người dẫn dắt chúng tôi</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+            <div class="team-card">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="CEO">
+              <div class="team-body">
+                <div class="team-name">Nguyễn Minh Khoa</div>
+                <div class="team-role">CEO & Đồng sáng lập</div>
+                <p class="text-muted small mb-0">15 năm kinh nghiệm trong lĩnh vực bất động sản cao cấp.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-card">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" alt="COO">
+              <div class="team-body">
+                <div class="team-name">Trần Thị Hương</div>
+                <div class="team-role">COO & Đồng sáng lập</div>
+                <p class="text-muted small mb-0">Chuyên gia vận hành với nền tảng từ McKinsey & Company.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop" alt="CTO">
+              <div class="team-body">
+                <div class="team-name">Lê Văn Dũng</div>
+                <div class="team-role">CTO</div>
+                <p class="text-muted small mb-0">Kỹ sư phần mềm với 12 năm xây dựng các nền tảng PropTech.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="team-card">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop" alt="CMO">
+              <div class="team-body">
+                <div class="team-name">Phạm Thị Lan</div>
+                <div class="team-role">CMO</div>
+                <p class="text-muted small mb-0">Chuyên gia marketing bất động sản với hơn 10 năm kinh nghiệm.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- History -->
+    <section class="section-space bg-white">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <span class="section-kicker">Lịch sử phát triển</span>
+          <h2 class="section-title mt-2">Hành trình của chúng tôi</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item" data-aos="fade-right">
+            <div class="timeline-content">
+              <div class="timeline-year">2014</div>
+              <h5 class="fw-bold mb-2">Thành lập</h5>
+              <p class="text-muted mb-0">BatDongSan ra đời tại TP.HCM với 5 thành viên sáng lập và tầm nhìn về một nền tảng bất động sản số hiện đại.</p>
+            </div>
+            <div class="timeline-dot"><i class="fa-solid fa-building"></i></div>
+            <div style="flex:1"></div>
+          </div>
+          <div class="timeline-item" data-aos="fade-left">
+            <div style="flex:1"></div>
+            <div class="timeline-dot"><i class="fa-solid fa-rocket"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-year">2016</div>
+              <h5 class="fw-bold mb-2">Mở rộng toàn quốc</h5>
+              <p class="text-muted mb-0">Khai trương văn phòng tại Hà Nội và Đà Nẵng, mở rộng danh mục lên 1.000+ bất động sản.</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-aos="fade-right">
+            <div class="timeline-content">
+              <div class="timeline-year">2019</div>
+              <h5 class="fw-bold mb-2">Ra mắt ứng dụng di động</h5>
+              <p class="text-muted mb-0">Ứng dụng BatDongSan đạt 500.000 lượt tải trong năm đầu tiên ra mắt trên iOS và Android.</p>
+            </div>
+            <div class="timeline-dot"><i class="fa-solid fa-mobile-screen"></i></div>
+            <div style="flex:1"></div>
+          </div>
+          <div class="timeline-item" data-aos="fade-left">
+            <div style="flex:1"></div>
+            <div class="timeline-dot"><i class="fa-solid fa-trophy"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-year">2023</div>
+              <h5 class="fw-bold mb-2">Top 3 nền tảng BĐS Việt Nam</h5>
+              <p class="text-muted mb-0">Được vinh danh là một trong ba nền tảng bất động sản uy tín nhất Việt Nam bởi VnEconomy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-space text-center" style="background: linear-gradient(135deg, #0b3760, #0f4c81); color:#fff;">
+      <div class="container" data-aos="fade-up">
+        <h2 class="section-title text-white mb-4">Sẵn sàng bắt đầu?</h2>
+        <p class="section-desc mx-auto text-white-50 mb-5">Hãy để chúng tôi giúp bạn tìm kiếm bất động sản phù hợp hoặc tư vấn chiến lược đầu tư tốt nhất.</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a href="contact.html" class="btn btn-warning fw-bold px-5 py-3" style="border-radius:12px; font-family:'Manrope',sans-serif;">Liên hệ tư vấn</a>
+          <a href="properties.html" class="btn btn-outline-light fw-bold px-5 py-3" style="border-radius:12px; font-family:'Manrope',sans-serif;">Xem bất động sản</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer pt-5">
+    <div class="container py-4">
+      <div class="row g-4">
+        <div class="col-lg-3">
+          <div class="footer-brand">BatDongSan</div>
+          <p class="mb-0">Nâng tầm trải nghiệm bất động sản thông qua giám tuyển kiến trúc, dữ liệu thị trường và dịch vụ đại diện cao cấp tại Việt Nam.</p>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="footer-title">Danh mục</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="index.html">Trang chủ</a>
+            <a href="properties.html">Mua bán</a>
+            <a href="properties.html">Cho thuê</a>
+            <a href="projects.html">Dự án</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="footer-title">Về chúng tôi</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="about.html">Giới thiệu</a>
+            <a href="agents.html">Đội ngũ</a>
+            <a href="blog.html">Tạp chí</a>
+            <a href="join-team.html">Tuyển dụng</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="footer-title">Hỗ trợ</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="faq.html">Câu hỏi thường gặp</a>
+            <a href="contact.html">Liên hệ</a>
+            <a href="privacy.html">Chính sách bảo mật</a>
+            <a href="terms.html">Điều khoản sử dụng</a>
+          </div>
+        </div>
+        <div class="col-lg-3 mt-4 mt-lg-0">
+          <div class="footer-title">Bản đồ</div>
+          <div class="rounded-3 overflow-hidden shadow-sm" style="height: 140px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5132740348737!2d106.70181557579135!3d10.771946089376662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f416ca22ebf%3A0xe549bd92bf2cf502!2sBitexco%20Financial%20Tower!5e0!3m2!1sen!2svn!4v1700000000000!5m2!1sen!2svn" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container py-3 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <div class="small">© 2026 BatDongSan. Bảo lưu mọi quyền.</div>
+        <div class="d-flex gap-3">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    $(window).on("scroll", function () {
+      if ($(this).scrollTop() > 30) {
+        $("#mainNavbar").addClass("navbar-scrolled");
+      } else {
+        $("#mainNavbar").removeClass("navbar-scrolled");
+      }
+    });
+    AOS.init({ once: true, duration: 900, easing: "ease-out-cubic" });
+  </script>
+</body>
+</html>

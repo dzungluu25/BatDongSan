@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Liên hệ | The Digital Curator</title>
+  <title>Đăng nhập | BatDongSan</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -138,6 +138,8 @@
     }
 
     .nav-link-custom {
+      display: block;
+      padding: 0.5rem 0;
       color: #475569;
       font-weight: 700;
       font-size: .95rem;
@@ -151,14 +153,16 @@
       color: var(--primary);
     }
 
-    .nav-link-custom.active::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      width: 100%;
-      height: 2px;
-      background: var(--secondary);
+    @media (min-width: 992px) {
+      .nav-link-custom.active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 100%;
+        height: 2px;
+        background: var(--secondary);
+      }
     }
 
     .btn-primary-custom {
@@ -837,14 +841,14 @@
 <body>
 
   <!-- Topbar -->
-  <div class="topbar py-2 d-none d-md-block">
+  <div class="topbar py-2">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex gap-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 gap-md-0">
+        <div class="d-flex flex-column flex-md-row align-items-center gap-2 gap-md-4">
           <span><i class="fa-solid fa-phone me-2"></i>0909 123 456</span>
           <span><i class="fa-solid fa-envelope me-2"></i>contact@digitalcurator.vn</span>
         </div>
-        <div class="d-flex gap-4">
+        <div class="d-flex flex-column flex-md-row align-items-center gap-2 gap-md-4">
           <a href="#"><i class="fa-brands fa-facebook-f me-2"></i>Facebook</a>
           <a href="#"><i class="fa-brands fa-instagram me-2"></i>Instagram</a>
           <a href="#"><i class="fa-brands fa-linkedin-in me-2"></i>LinkedIn</a>
@@ -863,20 +867,20 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarMain">
-        <ul class="navbar-nav mx-auto gap-lg-4">
-          <li class="nav-item"><a class="nav-link-custom active" href="index.html">Trang chủ</a></li>
+        <ul class="navbar-nav mx-auto gap-2 gap-lg-4 py-3 py-lg-0">
+          <li class="nav-item"><a class="nav-link-custom" href="index.html">Trang chủ</a></li>
           <li class="nav-item"><a class="nav-link-custom" href="properties.html">Mua bán</a></li>
           <li class="nav-item"><a class="nav-link-custom" href="properties.html">Cho thuê</a></li>
           <li class="nav-item"><a class="nav-link-custom" href="projects.html">Dự án</a></li>
           <li class="nav-item"><a class="nav-link-custom" href="agents.html">Môi giới</a></li>
           <li class="nav-item"><a class="nav-link-custom" href="blog.html">Tạp chí</a></li>
           <li class="nav-item"><a class="nav-link-custom" href="contact.html">Liên hệ</a></li>
-          <l1 class="nav-item"><a class="nav-link-custom" href="join-team.html">Gia nhập</a></li>
+          <li class="nav-item"><a class="nav-link-custom" href="join-team.html">Gia nhập</a></li>
         </ul>
 
-        <div class="d-flex gap-2 mt-3 mt-lg-0">
-          <button class="btn btn-light border fw-bold px-3 py-2" href="login.html">Đăng nhập</button>
-          <a class="btn btn-primary-custom" href="post-property.html">Đăng tin</a>
+         <div class="d-flex flex-column flex-lg-row gap-3 mt-2 mt-lg-0 pb-3 pb-lg-0">
+          <a class="btn btn-light border fw-bold px-3 py-2" href="login.html">Đăng nhập</a>
+          <a class="btn btn-primary-custom text-center py-2" href="post-property.html">Đăng tin</a>
         </div>
       </div>
     </div>
@@ -885,52 +889,77 @@
   
 <main>
 
-    <section class="section-space">
-       <div class="container">
-          <div class="row align-items-center">
-             <div class="col-md-6 pe-lg-5" data-aos="fade-right">
-                <span class="section-kicker">Kết nối</span>
-                <h1 class="section-title mb-4">Liên hệ với chúng tôi</h1>
-                <p class="section-desc mb-5">Đội ngũ chuyên viên sẽ hỗ trợ bạn tìm kiếm bất động sản phù hợp hoặc tư vấn giải pháp đầu tư, ký gửi và chuyển nhượng.</p>
-                <form>
-                   <input type="text" class="form-control form-control-lg mb-3 bg-light border-0" placeholder="Họ và tên">
-                   <input type="email" class="form-control form-control-lg mb-3 bg-light border-0" placeholder="Email">
-                   <textarea rows="4" class="form-control bg-light border-0 mb-4" placeholder="Nội dung cần tư vấn..."></textarea>
-                   <button class="btn btn-primary-custom px-5 py-3 rounded-pill w-100 fw-bold">Gửi yêu cầu</button>
-                </form>
-             </div>
-             <div class="col-md-6 mt-5 mt-md-0" data-aos="fade-left">
-                <div class="bg-primary text-white p-5 rounded-4 shadow-lg">
-                   <h3 class="fw-bold mb-4">Văn phòng chính</h3>
-                   <ul class="list-unstyled">
-                      <li class="mb-4 d-flex"><i class="fa-solid fa-map-pin fs-4 mt-1 me-3 text-secondary"></i> <div>Tòa nhà Bitexco, 2 Hải Triều, Quận 1, TP.HCM</div></li>
-                      <li class="mb-4 d-flex"><i class="fa-solid fa-phone fs-4 mt-1 me-3 text-secondary"></i> <div>(+84) 901 234 567</div></li>
-                      <li class="mb-4 d-flex"><i class="fa-solid fa-envelope fs-4 mt-1 me-3 text-secondary"></i> <div>contact@digitalcurator.vn</div></li>
-                   </ul>
-                </div>
-             </div>
-          </div>
-       </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="pb-5" data-aos="fade-up">
+    <section class="py-5 d-flex align-items-center" style="min-height: 100vh; background-color: var(--bg-soft); padding-top: 120px !important;">
         <div class="container">
-            <div class="card border-0 rounded-4 overflow-hidden shadow-sm" style="height: 480px;">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5132740348737!2d106.70181557579135!3d10.771946089376662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f416ca22ebf%3A0xe549bd92bf2cf502!2sBitexco%20Financial%20Tower!5e0!3m2!1sen!2svn!4v1700000000000!5m2!1sen!2svn" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden animate__animated animate__fadeInUp">
+                        <div class="row g-0 position-relative">
+                            <!-- Image side -->
+                            <div class="col-md-6 d-none d-md-block position-relative" style="min-height: 600px;">
+                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop" alt="Login Image" class="w-100 h-100 object-fit-cover position-absolute top-0 start-0">
+                                <div class="position-absolute inset-0 w-100 h-100 d-flex flex-column justify-content-end p-5" style="background: linear-gradient(to top, rgba(11,31,58,0.95), transparent);">
+                                    <h3 class="text-white fw-bold mb-2 font-manrope" style="font-family: 'Manrope', sans-serif;">Không Gian Sống Hoàn Hảo</h3>
+                                    <p class="text-white-50 mb-0">Khám phá các bất động sản đẳng cấp với dịch vụ chuyên nghiệp nhất.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Form side -->
+                            <div class="col-md-6 bg-white p-4 p-md-5 d-flex flex-column justify-content-center">
+                                <div class="text-center mb-5">
+                                    <h2 class="section-title mb-2" style="font-size: 2.2rem;">Chào mừng trở lại</h2>
+                                    <p class="text-muted">Vui lòng đăng nhập để tiếp tục</p>
+                                </div>
+                                <form>
+                                    <div class="mb-4">
+                                        <label for="email" class="form-label fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.05em; color: var(--text-muted);">Email / Tên đăng nhập</label>
+                                        <input type="email" class="form-control bg-light px-4 py-3" id="email" placeholder="example@email.com" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <label for="password" class="form-label fw-bold text-uppercase mb-0" style="font-size: 0.8rem; letter-spacing: 0.05em; color: var(--text-muted);">Mật khẩu</label>
+                                            <a href="#" class="text-decoration-none fw-semibold" style="font-size: 0.85rem; color: var(--primary);">Quên mật khẩu?</a>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="password" class="form-control border-end-0 bg-light px-4 py-3" id="password" placeholder="••••••••" required>
+                                            <button class="btn btn-light bg-light border-start-0 px-3 text-muted" style="border: 1px solid var(--border-soft);" type="button" id="togglePassword">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 form-check">
+                                        <input type="checkbox" class="form-check-input mt-1" id="remember">
+                                        <label class="form-check-label text-muted" for="remember" style="font-size: 0.95rem;">Ghi nhớ đăng nhập</label>
+                                    </div>
+                                    <div class="d-grid gap-3">
+                                        <button type="submit" class="btn btn-primary-custom py-3 text-uppercase">Đăng nhập</button>
+                                        <button type="button" class="btn text-dark bg-white py-3 fw-bold d-flex align-items-center justify-content-center gap-2 shadow-sm hover-bg-light transition" style="border-radius: 12px; border: 1px solid #e5e7eb !important;">
+                                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20" alt="Google">
+                                            Đăng nhập với Google
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class="text-center mt-4">
+                                    <p class="text-muted mb-0">Chưa có tài khoản? <a href="register.html" class="fw-bold text-decoration-none" style="color: var(--primary);">Đăng ký ngay</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
 </main>
+
+<style>
+.hover-bg-light:hover {
+    background-color: #f8f9fa !important;
+}
+.transition {
+    transition: all 0.2s ease;
+}
+</style>
 
 
   <!-- Footer -->
@@ -1238,6 +1267,13 @@
           }
         });
       }
+
+      // Password Toggle Feature
+      $('#togglePassword').on('click', function() {
+        let isPasswordField = $('#password').attr('type') === 'password';
+        $('#password').attr('type', isPasswordField ? 'text' : 'password');
+        $(this).find('i').toggleClass('fa-eye fa-eye-slash');
+      });
     });
 
   </script>

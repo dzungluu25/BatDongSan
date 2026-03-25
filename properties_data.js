@@ -1,4 +1,9 @@
-const locations = {
+// =============================================
+// properties_data.js  — browser-compatible
+// Exposed as: window.LOCATIONS, window.PROPERTY_CATALOG, window.PROPERTIES_DATA
+// =============================================
+
+const LOCATIONS = {
   hcm: {
     city: 'TP.HCM',
     districts: ['Quận 1', 'Quận 2', 'Quận 7', 'Bình Thạnh', 'TP Thủ Đức', 'Phú Nhuận']
@@ -25,8 +30,9 @@ const locations = {
   }
 };
 
-const propertyCatalog = {
+const PROPERTY_CATALOG = {
   villa: {
+    label: 'Biệt thự',
     segment: 'luxury',
     titles: [
       'Biệt thự ven sông cao cấp',
@@ -43,6 +49,7 @@ const propertyCatalog = {
     priceRange: [25, 120]
   },
   apartment: {
+    label: 'Căn hộ',
     segment: 'upperMid',
     titles: [
       'Căn hộ cao cấp trung tâm',
@@ -59,6 +66,7 @@ const propertyCatalog = {
     priceRange: [3, 25]
   },
   townhouse: {
+    label: 'Nhà phố',
     segment: 'upperMid',
     titles: [
       'Nhà phố thương mại vị trí đẹp',
@@ -75,6 +83,7 @@ const propertyCatalog = {
     priceRange: [8, 45]
   },
   penthouse: {
+    label: 'Penthouse',
     segment: 'luxury',
     titles: [
       'Penthouse skyline độc bản',
@@ -91,6 +100,7 @@ const propertyCatalog = {
     priceRange: [18, 90]
   },
   resort: {
+    label: 'Biệt thự biển',
     segment: 'resort',
     titles: [
       'Biệt thự biển nghỉ dưỡng',
@@ -108,97 +118,83 @@ const propertyCatalog = {
   }
 };
 
-const badges = ['Bán', 'Cho thuê', 'Nổi bật', 'Mới đăng'];
+const _badges = ['Bán', 'Cho thuê', 'Nổi bật', 'Mới đăng'];
 
-function randomFrom(arr) {
+function _randomFrom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function randomInt(min, max) {
+function _randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function formatPrice(billion) {
-  return `${billion} Tỷ VNĐ`;
+function _formatPrice(billion) {
+  return billion + ' Tỷ VNĐ';
 }
 
-function getRandomLocation() {
-  const keys = Object.keys(locations);
-  const selectedKey = randomFrom(keys);
-  const selected = locations[selectedKey];
-  const district = randomFrom(selected.districts);
+function _imageUrl(url) {
+  return url + '?q=80&w=1400&auto=format&fit=crop';
+}
 
+function _getRandomLocation() {
+  const keys = Object.keys(LOCATIONS);
+  const selectedKey = _randomFrom(keys);
+  const selected = LOCATIONS[selectedKey];
+  const district = _randomFrom(selected.districts);
   return {
     cityKey: selectedKey,
     city: selected.city,
     district,
-    full: `${district}, ${selected.city}`
+    full: district + ', ' + selected.city
   };
 }
 
-function imageUrl(url) {
-  return `${url}?q=80&w=1400&auto=format&fit=crop`;
-}
-
-function randomImagesByType(type) {
-  const list = propertyCatalog[type].images.slice();
+function _randomImagesByType(type) {
+  const list = PROPERTY_CATALOG[type].images.slice();
   const shuffled = list.sort(() => 0.5 - Math.random());
-
   return {
-    heroImg: imageUrl(shuffled[0]),
-    galleryImg1: imageUrl(shuffled[1] || shuffled[0]),
-    galleryImg2: imageUrl(shuffled[2] || shuffled[0])
+    heroImg: _imageUrl(shuffled[0]),
+    galleryImg1: _imageUrl(shuffled[1] || shuffled[0]),
+    galleryImg2: _imageUrl(shuffled[2] || shuffled[0])
   };
 }
 
-function getAreaByType(type) {
+function _getAreaByType(type) {
   switch (type) {
-    case 'villa':
-      return randomInt(250, 650);
-    case 'apartment':
-      return randomInt(75, 220);
-    case 'townhouse':
-      return randomInt(90, 320);
-    case 'penthouse':
-      return randomInt(180, 450);
-    case 'resort':
-      return randomInt(180, 500);
-    default:
-      return randomInt(80, 300);
+    case 'villa':     return _randomInt(250, 650);
+    case 'apartment': return _randomInt(75, 220);
+    case 'townhouse': return _randomInt(90, 320);
+    case 'penthouse': return _randomInt(180, 450);
+    case 'resort':    return _randomInt(180, 500);
+    default:          return _randomInt(80, 300);
   }
 }
 
-function getBedsByType(type) {
+function _getBedsByType(type) {
   switch (type) {
-    case 'apartment':
-      return randomInt(2, 4);
-    case 'penthouse':
-      return randomInt(3, 5);
+    case 'apartment': return _randomInt(2, 4);
+    case 'penthouse': return _randomInt(3, 5);
     case 'villa':
-    case 'resort':
-      return randomInt(3, 6);
-    case 'townhouse':
-      return randomInt(3, 5);
-    default:
-      return randomInt(2, 4);
+    case 'resort':    return _randomInt(3, 6);
+    case 'townhouse': return _randomInt(3, 5);
+    default:          return _randomInt(2, 4);
   }
 }
 
-function buildDescription(type, title, fullLocation) {
+function _buildDescription(type, title, fullLocation) {
   const descMap = {
-    villa: `${title} tọa lạc tại ${fullLocation}, thuộc khu dân cư cao cấp với không gian sống riêng tư, kiến trúc hiện đại và pháp lý rõ ràng. Phù hợp cho khách hàng tìm kiếm nơi an cư chất lượng hoặc tài sản giữ giá lâu dài.`,
-    apartment: `${title} tại ${fullLocation} sở hữu thiết kế tối ưu công năng, tiện ích nội khu đầy đủ và kết nối thuận tiện đến trung tâm. Đây là lựa chọn phù hợp cho nhu cầu ở thực hoặc cho thuê.`,
-    townhouse: `${title} nằm tại ${fullLocation}, phù hợp để ở kết hợp kinh doanh hoặc đầu tư khai thác. Tài sản có vị trí thuận lợi, hạ tầng hoàn chỉnh và tiềm năng tăng giá tốt.`,
-    penthouse: `${title} tại ${fullLocation} là dòng sản phẩm giới hạn dành cho khách hàng ưu tiên tầm nhìn đẹp, không gian sống đẳng cấp và trải nghiệm riêng tư giữa khu trung tâm.`,
-    resort: `${title} tại ${fullLocation} mang phong cách nghỉ dưỡng, phù hợp cho nhu cầu second home hoặc đầu tư khai thác lưu trú. Không gian thoáng, gần biển hoặc khu du lịch trọng điểm.`
+    villa: title + ' tọa lạc tại ' + fullLocation + ', thuộc khu dân cư cao cấp với không gian sống riêng tư, kiến trúc hiện đại và pháp lý rõ ràng.',
+    apartment: title + ' tại ' + fullLocation + ' sở hữu thiết kế tối ưu công năng, tiện ích nội khu đầy đủ và kết nối thuận tiện đến trung tâm.',
+    townhouse: title + ' nằm tại ' + fullLocation + ', phù hợp để ở kết hợp kinh doanh hoặc đầu tư khai thác. Tài sản có vị trí thuận lợi, hạ tầng hoàn chỉnh.',
+    penthouse: title + ' tại ' + fullLocation + ' là dòng sản phẩm giới hạn dành cho khách hàng ưu tiên tầm nhìn đẹp và không gian sống đẳng cấp.',
+    resort: title + ' tại ' + fullLocation + ' mang phong cách nghỉ dưỡng, phù hợp cho nhu cầu second home hoặc đầu tư khai thác lưu trú.'
   };
-
-  return descMap[type];
+  return descMap[type] || '';
 }
 
-const propertyTypes = Object.keys(propertyCatalog);
+const _propertyTypes = Object.keys(PROPERTY_CATALOG);
 
-const featuredSeed = [
+const _featuredSeed = [
   {
     id: 'p1',
     title: 'Biệt thự ven sông cao cấp',
@@ -208,13 +204,15 @@ const featuredSeed = [
     district: 'TP Thủ Đức',
     location: 'Thảo Điền, TP Thủ Đức, TP.HCM',
     price: '68 Tỷ VNĐ',
+    priceNum: 68,
     beds: 5,
     baths: 6,
     area: 390,
     badge: 'Bán',
-    heroImg: imageUrl('https://images.unsplash.com/photo-1512917774080-9991f1c4c750'),
-    galleryImg1: imageUrl('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9'),
-    galleryImg2: imageUrl('https://images.unsplash.com/photo-1600585154340-be6161a56a0c'),
+    mode: 'sale',
+    heroImg: _imageUrl('https://images.unsplash.com/photo-1512917774080-9991f1c4c750'),
+    galleryImg1: _imageUrl('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9'),
+    galleryImg2: _imageUrl('https://images.unsplash.com/photo-1600585154340-be6161a56a0c'),
     desc: 'Biệt thự compound cao cấp tại Thảo Điền, thiết kế mở sang trọng, phù hợp nhu cầu an cư lâu dài cho gia đình hoặc sở hữu tài sản giá trị tại khu Đông TP.HCM.'
   },
   {
@@ -226,13 +224,15 @@ const featuredSeed = [
     district: 'Tây Hồ',
     location: 'Tây Hồ, Hà Nội',
     price: '92 Tỷ VNĐ',
+    priceNum: 92,
     beds: 4,
     baths: 5,
     area: 350,
     badge: 'Cho thuê',
-    heroImg: imageUrl('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c'),
-    galleryImg1: imageUrl('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0'),
-    galleryImg2: imageUrl('https://images.unsplash.com/photo-1600607686527-6fb886090705'),
+    mode: 'rent',
+    heroImg: _imageUrl('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c'),
+    galleryImg1: _imageUrl('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0'),
+    galleryImg2: _imageUrl('https://images.unsplash.com/photo-1600607686527-6fb886090705'),
     desc: 'Penthouse độc bản tại khu Tây Hồ với tầm nhìn rộng, nội thất cao cấp và không gian sống riêng tư, phù hợp cho khách hàng thuê ở tiêu chuẩn quốc tế.'
   },
   {
@@ -244,48 +244,100 @@ const featuredSeed = [
     district: 'Ngũ Hành Sơn',
     location: 'Ngũ Hành Sơn, Đà Nẵng',
     price: '54 Tỷ VNĐ',
+    priceNum: 54,
     beds: 3,
     baths: 3,
     area: 380,
     badge: 'Nổi bật',
-    heroImg: imageUrl('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b'),
-    galleryImg1: imageUrl('https://images.unsplash.com/photo-1600566752355-35792bedcfea'),
-    galleryImg2: imageUrl('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3'),
+    mode: 'sale',
+    heroImg: _imageUrl('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b'),
+    galleryImg1: _imageUrl('https://images.unsplash.com/photo-1600566752355-35792bedcfea'),
+    galleryImg2: _imageUrl('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3'),
     desc: 'Biệt thự nghỉ dưỡng gần biển tại Đà Nẵng, thích hợp cho nhu cầu second home hoặc đầu tư khai thác với không gian xanh và thiết kế tinh giản.'
   }
 ];
 
-const generated = Array.from({ length: 97 }).map((_, i) => {
-  const id = `p${i + 4}`;
-  const type = randomFrom(propertyTypes);
-  const catalog = propertyCatalog[type];
-  const loc = getRandomLocation();
-  const images = randomImagesByType(type);
-  const title = randomFrom(catalog.titles);
-  const area = getAreaByType(type);
-  const beds = getBedsByType(type);
-  const baths = Math.max(2, beds + randomInt(0, 1));
-  const [minPrice, maxPrice] = catalog.priceRange;
-  const price = formatPrice(randomInt(minPrice, maxPrice));
-
-  return {
-    id,
-    title,
-    type,
-    segment: catalog.segment,
-    city: loc.city,
-    district: loc.district,
-    location: loc.full,
-    price,
-    beds,
-    baths,
-    area,
-    badge: randomFrom(badges),
-    heroImg: images.heroImg,
-    galleryImg1: images.galleryImg1,
-    galleryImg2: images.galleryImg2,
-    desc: buildDescription(type, title, loc.full)
+// Seed a deterministic pseudo-random sequence so IDs are stable
+function _seededRand(seed) {
+  let s = seed;
+  return function() {
+    s = (s * 9301 + 49297) % 233280;
+    return s / 233280;
   };
-});
+}
 
-module.exports = [...featuredSeed, ...generated];
+const _generated = (function() {
+  const rand = _seededRand(42);
+  function rFrom(arr) { return arr[Math.floor(rand() * arr.length)]; }
+  function rInt(min, max) { return Math.floor(rand() * (max - min + 1)) + min; }
+  function imgUrl(url) { return url + '?q=80&w=1400&auto=format&fit=crop'; }
+
+  const result = [];
+  for (let i = 0; i < 97; i++) {
+    const id = 'p' + (i + 4);
+    const type = rFrom(_propertyTypes);
+    const catalog = PROPERTY_CATALOG[type];
+    const locKeys = Object.keys(LOCATIONS);
+    const locKey = rFrom(locKeys);
+    const loc = LOCATIONS[locKey];
+    const district = rFrom(loc.districts);
+    const fullLoc = district + ', ' + loc.city;
+    const title = rFrom(catalog.titles);
+    const area = (function() {
+      switch (type) {
+        case 'villa':     return rInt(250, 650);
+        case 'apartment': return rInt(75, 220);
+        case 'townhouse': return rInt(90, 320);
+        case 'penthouse': return rInt(180, 450);
+        case 'resort':    return rInt(180, 500);
+        default:          return rInt(80, 300);
+      }
+    })();
+    const beds = (function() {
+      switch (type) {
+        case 'apartment': return rInt(2, 4);
+        case 'penthouse': return rInt(3, 5);
+        case 'villa':
+        case 'resort':    return rInt(3, 6);
+        case 'townhouse': return rInt(3, 5);
+        default:          return rInt(2, 4);
+      }
+    })();
+    const baths = Math.max(2, beds + rInt(0, 1));
+    const [minP, maxP] = catalog.priceRange;
+    const priceNum = rInt(minP, maxP);
+    const imgList = catalog.images.slice();
+    const heroImg = imgUrl(imgList[rInt(0, imgList.length - 1)]);
+    const g1 = imgUrl(imgList[rInt(0, imgList.length - 1)]);
+    const g2 = imgUrl(imgList[rInt(0, imgList.length - 1)]);
+    const badge = rFrom(_badges);
+    const mode = (badge === 'Cho thuê') ? 'rent' : 'sale';
+
+    result.push({
+      id,
+      title,
+      type,
+      segment: catalog.segment,
+      city: loc.city,
+      district,
+      location: fullLoc,
+      price: priceNum + ' Tỷ VNĐ',
+      priceNum,
+      beds,
+      baths,
+      area,
+      badge,
+      mode,
+      heroImg,
+      galleryImg1: g1,
+      galleryImg2: g2,
+      desc: _buildDescription(type, title, fullLoc)
+    });
+  }
+  return result;
+})();
+
+// Expose globally for browser use
+window.LOCATIONS = LOCATIONS;
+window.PROPERTY_CATALOG = PROPERTY_CATALOG;
+window.PROPERTIES_DATA = [..._featuredSeed, ..._generated];

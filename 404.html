@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 - Trang không tìm thấy | BatDongSan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --primary-dark: #0b3760;
+      --secondary: #d7a85c;
+      --bg-soft: #f6f8fb;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--text-main);
+      background: var(--bg-soft);
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4,h5,h6,.navbar-brand,.btn { font-family: "Manrope", sans-serif; }
+
+    /* Navbar */
+    .navbar-custom { background: rgba(255,255,255,.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,.06); }
+    .navbar-brand { font-weight: 800; font-size: 1.7rem; letter-spacing: -0.04em; color: var(--primary); }
+    .btn-primary-custom { background: var(--primary); border: 1px solid var(--primary); color: #fff; border-radius: 12px; font-weight: 800; }
+    .btn-primary-custom:hover { background: var(--primary-dark); border-color: var(--primary-dark); color: #fff; }
+
+    /* 404 Section */
+    .error-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 0;
+    }
+    .error-code {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(8rem, 20vw, 14rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      background: linear-gradient(135deg, #0b3760, #0f4c81, #1a6aad, #d7a85c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0;
+      user-select: none;
+    }
+    .error-title {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .error-desc {
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+    .illustration {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    .illustration svg { width: 100%; height: auto; }
+
+    /* Quick links */
+    .quick-link-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid #eef2f7;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all .25s ease;
+      box-shadow: 0 4px 16px rgba(15,76,129,0.05);
+    }
+    .quick-link-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(15,76,129,0.12);
+      border-color: #d6e8f8;
+      color: var(--primary);
+    }
+    .ql-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #edf5fc;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .ql-title { font-weight: 700; font-size: .95rem; margin-bottom: .1rem; }
+    .ql-sub { font-size: .8rem; color: var(--text-muted); }
+
+    /* Search bar */
+    .search-bar {
+      background: #fff;
+      border-radius: 16px;
+      border: 2px solid #eef2f7;
+      padding: .5rem .5rem .5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      max-width: 460px;
+      margin: 0 auto 2.5rem;
+      transition: border-color .2s;
+    }
+    .search-bar:focus-within { border-color: var(--primary); }
+    .search-bar input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 1rem;
+      font-family: "Inter", sans-serif;
+      background: transparent;
+      color: var(--text-main);
+    }
+    .search-bar button {
+      background: var(--primary);
+      border: none;
+      color: #fff;
+      border-radius: 10px;
+      padding: .6rem 1.2rem;
+      font-weight: 700;
+      font-family: "Manrope", sans-serif;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .search-bar button:hover { background: var(--primary-dark); }
+
+    /* Footer */
+    .footer-mini {
+      background: #0b1220;
+      color: #94a3b8;
+      font-size: .85rem;
+      padding: 1.5rem 0;
+      text-align: center;
+    }
+    .footer-mini a { color: #94a3b8; text-decoration: none; }
+    .footer-mini a:hover { color: #fff; }
+
+    /* Floating shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .08;
+      pointer-events: none;
+    }
+    .shape-1 { width: 400px; height: 400px; background: var(--primary); top: -100px; right: -100px; }
+    .shape-2 { width: 250px; height: 250px; background: var(--secondary); bottom: 50px; left: -80px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom py-3">
+    <div class="container">
+      <a class="navbar-brand text-decoration-none" href="index.html">BatDongSan</a>
+      <div class="d-flex gap-2 ms-auto">
+        <a class="btn btn-light border fw-bold px-3 py-2 d-none d-sm-inline-block" href="login.html">Đăng nhập</a>
+        <a class="btn btn-primary-custom px-3 py-2" href="post-property.html">Đăng tin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 404 Content -->
+  <section class="error-section position-relative">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="container">
+      <div class="text-center" style="position:relative;z-index:1;">
+
+        <!-- Illustration -->
+        <div class="illustration mb-2">
+          <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Building outlines -->
+            <rect x="40" y="100" width="80" height="160" rx="8" fill="#e2edf8" stroke="#bcd5ef" stroke-width="2"/>
+            <rect x="60" y="120" width="18" height="20" rx="3" fill="#b8d4ee"/>
+            <rect x="88" y="120" width="18" height="20" rx="3" fill="#b8d4ee"/>
+            <rect x="60" y="155" width="18" height="20" rx="3" fill="#b8d4ee"/>
+            <rect x="88" y="155" width="18" height="20" rx="3" fill="#b8d4ee"/>
+            <rect x="60" y="190" width="18" height="20" rx="3" fill="#b8d4ee"/>
+            <rect x="88" y="190" width="18" height="20" rx="3" fill="#b8d4ee"/>
+            <rect x="68" y="230" width="24" height="30" rx="4" fill="#9ec3e3"/>
+            <!-- Tall building -->
+            <rect x="160" y="50" width="100" height="210" rx="8" fill="#d6e8f7" stroke="#bcd5ef" stroke-width="2"/>
+            <rect x="178" y="70" width="22" height="22" rx="3" fill="#a8cce8"/>
+            <rect x="214" y="70" width="22" height="22" rx="3" fill="#a8cce8"/>
+            <rect x="178" y="108" width="22" height="22" rx="3" fill="#a8cce8"/>
+            <rect x="214" y="108" width="22" height="22" rx="3" fill="#a8cce8"/>
+            <rect x="178" y="146" width="22" height="22" rx="3" fill="#a8cce8"/>
+            <rect x="214" y="146" width="22" height="22" rx="3" fill="#a8cce8"/>
+            <rect x="178" y="184" width="22" height="22" rx="3" fill="#a8cce8"/>
+            <rect x="214" y="184" width="22" height="22" rx="3" fill="#a8cce8"/>
+            <rect x="196" y="222" width="28" height="38" rx="4" fill="#8cbfe0"/>
+            <!-- Right building -->
+            <rect x="300" y="120" width="70" height="140" rx="8" fill="#e2edf8" stroke="#bcd5ef" stroke-width="2"/>
+            <rect x="316" y="138" width="16" height="16" rx="3" fill="#b8d4ee"/>
+            <rect x="340" y="138" width="16" height="16" rx="3" fill="#b8d4ee"/>
+            <rect x="316" y="166" width="16" height="16" rx="3" fill="#b8d4ee"/>
+            <rect x="340" y="166" width="16" height="16" rx="3" fill="#b8d4ee"/>
+            <rect x="316" y="194" width="16" height="16" rx="3" fill="#b8d4ee"/>
+            <rect x="340" y="194" width="16" height="16" rx="3" fill="#b8d4ee"/>
+            <rect x="322" y="228" width="26" height="32" rx="4" fill="#9ec3e3"/>
+            <!-- Ground -->
+            <rect x="0" y="258" width="400" height="4" rx="2" fill="#bcd5ef"/>
+            <!-- Question mark sign -->
+            <circle cx="340" cy="80" r="32" fill="#0f4c81" opacity="0.9"/>
+            <text x="340" y="93" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="36" fill="white">?</text>
+            <!-- Stars/dots -->
+            <circle cx="30" cy="60" r="4" fill="#d7a85c" opacity=".7"/>
+            <circle cx="50" cy="30" r="3" fill="#0f4c81" opacity=".5"/>
+            <circle cx="380" cy="40" r="4" fill="#d7a85c" opacity=".6"/>
+            <circle cx="360" cy="160" r="2.5" fill="#0f4c81" opacity=".4"/>
+            <circle cx="130" cy="30" r="3" fill="#d7a85c" opacity=".5"/>
+          </svg>
+        </div>
+
+        <div class="error-code">404</div>
+        <h1 class="error-title mt-2">Ối! Trang không tồn tại</h1>
+        <p class="error-desc">Trang bạn đang tìm kiếm có thể đã bị xóa, đổi tên hoặc tạm thời không khả dụng. Hãy thử tìm kiếm hoặc quay về trang chủ.</p>
+
+        <!-- Search -->
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass" style="color:var(--text-muted);"></i>
+          <input type="text" placeholder="Tìm kiếm bất động sản..." id="searchInput" />
+          <button onclick="doSearch()">Tìm kiếm</button>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="d-flex gap-3 justify-content-center flex-wrap mb-5">
+          <a href="index.html" class="btn btn-primary-custom px-4 py-3">
+            <i class="fa-solid fa-house me-2"></i>Về trang chủ
+          </a>
+          <a href="contact.html" class="btn btn-outline-secondary fw-bold px-4 py-3" style="border-radius:12px;">
+            <i class="fa-solid fa-headset me-2"></i>Liên hệ hỗ trợ
+          </a>
+        </div>
+
+        <!-- Quick links -->
+        <div class="mb-2">
+          <p class="fw-bold text-uppercase" style="font-size:.8rem;letter-spacing:.12em;color:var(--text-muted);">Bạn có thể quan tâm</p>
+        </div>
+        <div class="row g-3 justify-content-center" style="max-width:700px;margin:0 auto;">
+          <div class="col-6 col-md-3">
+            <a href="properties.html" class="quick-link-card">
+              <div class="ql-icon"><i class="fa-solid fa-building"></i></div>
+              <div>
+                <div class="ql-title">Mua bán</div>
+                <div class="ql-sub">BĐS mới nhất</div>
+              </div>
+            </a>
+          </div>
+          <div class="col-6 col-md-3">
+            <a href="projects.html" class="quick-link-card">
+              <div class="ql-icon"><i class="fa-solid fa-city"></i></div>
+              <div>
+                <div class="ql-title">Dự án</div>
+                <div class="ql-sub">Đang mở bán</div>
+              </div>
+            </a>
+          </div>
+          <div class="col-6 col-md-3">
+            <a href="agents.html" class="quick-link-card">
+              <div class="ql-icon"><i class="fa-solid fa-user-tie"></i></div>
+              <div>
+                <div class="ql-title">Môi giới</div>
+                <div class="ql-sub">Chuyên viên</div>
+              </div>
+            </a>
+          </div>
+          <div class="col-6 col-md-3">
+            <a href="blog.html" class="quick-link-card">
+              <div class="ql-icon"><i class="fa-solid fa-newspaper"></i></div>
+              <div>
+                <div class="ql-title">Tạp chí</div>
+                <div class="ql-sub">Tin tức BĐS</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Mini -->
+  <div class="footer-mini">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+        <span>© 2026 BatDongSan. Bảo lưu mọi quyền.</span>
+        <div class="d-flex gap-3">
+          <a href="privacy.html">Chính sách bảo mật</a>
+          <span>·</span>
+          <a href="terms.html">Điều khoản sử dụng</a>
+          <span>·</span>
+          <a href="faq.html">FAQ</a>
+          <span>·</span>
+          <a href="contact.html">Liên hệ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function doSearch() {
+      const q = document.getElementById('searchInput').value.trim();
+      if (q) {
+        window.location.href = 'properties.html?q=' + encodeURIComponent(q);
+      }
+    }
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    // Auto-redirect countdown (optional — disabled by default)
+    // let countdown = 15;
+    // const timer = setInterval(() => {
+    //   countdown--;
+    //   if (countdown <= 0) { clearInterval(timer); window.location.href = 'index.html'; }
+    // }, 1000);
+  </script>
+</body>
+</html>
